@@ -18,6 +18,10 @@
         android:id="@+id/homeFragment"
         android:name="com.space.quiz.presentation.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home">
-    </fragment>
+        tools:layout="@layout/fragment_home"></fragment>
+    <fragment
+        android:id="@+id/testFragment"
+        android:name="com.space.quiz.presentation.questions.TestsFragment"
+        android:label="fragment_tests"
+        tools:layout="@layout/fragment_tests"></fragment>
 </navigation>

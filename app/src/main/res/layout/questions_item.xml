@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.space.quiz.presentation.views.RectangleView
+        android:id="@+id/questionsRectangleView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_60dp"
+        android:layout_marginHorizontal="@dimen/dimen_16dp"
+        android:layout_marginTop="@dimen/dimen_12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:rectangleBackgroundColor="@color/success" />
+
+    <TextView
+        android:id="@+id/answersTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_30dp"
+        android:font="@font/myriad_geo"
+        tools:text="@tools:sample/lorem"
+        android:textColor="@color/neutral_04_white"
+        android:textSize="@dimen/dimen_14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/questionsRectangleView"
+        app:layout_constraintStart_toStartOf="@+id/questionsRectangleView"
+        app:layout_constraintTop_toTopOf="@+id/questionsRectangleView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/point_text"
+        android:textColor="@color/neutral_04_white"
+        android:drawablePadding="@dimen/dimen_5dp"
+        android:layout_marginEnd="@dimen/dimen_24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/questionsRectangleView"
+        app:layout_constraintEnd_toEndOf="@+id/questionsRectangleView"
+        app:layout_constraintTop_toTopOf="@+id/questionsRectangleView"
+        app:drawableRightCompat="@drawable/ic_star" />
+</androidx.constraintlayout.widget.ConstraintLayout>

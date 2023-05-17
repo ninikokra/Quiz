@@ -8,4 +8,9 @@
     <string name="hello_user_text">გამარჯობა,ირაკლი</string>
     <string name="details_text">დეტალურად</string>
     <string name="choose_subject_text">აირჩიე საგანი</string>
+    <string name="next_button_text">შემდეგი</string>
+    <string name="point_text">+1</string>
+    <string name="text_close">დახურვა</string>
+    <string name="points_text">შენ დააგროვე 14 ქულა</string>
+    <string name="congratulations_text">გილოცავ!</string>
 </resources>
