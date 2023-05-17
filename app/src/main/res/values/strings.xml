@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Quiz</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="my_first_quiz">ჩემი პირველი ქვიზი</string>
+    <string name="enter_name">შეიყვანე სახელი</string>
+    <string name="start_quiz">ქვიზის დაწყება</string>
+    <string name="hello_user_text">გამარჯობა,ირაკლი</string>
+    <string name="details_text">დეტალურად</string>
+    <string name="choose_subject_text">აირჩიე საგანი</string>
 </resources>
