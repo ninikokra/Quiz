@@ -5,10 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <com.space.quiz.presentation.views.RectangleView
         android:id="@+id/itemsRectangle"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_120dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.88"
         android:layout_marginHorizontal="@dimen/dimen_16dp"
         android:layout_marginTop="@dimen/dimen_20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -17,6 +19,7 @@
         app:rectangleBackgroundColor="@color/neutral_03_light_grey" />
 
     <ImageView
+        android:id="@+id/quizStartImageViewButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_button_subject"
@@ -25,8 +28,24 @@
         app:layout_constraintEnd_toEndOf="@+id/itemsRectangle"
         app:layout_constraintTop_toTopOf="@+id/itemsRectangle" />
 
+    <TextView
+        android:id="@+id/pointsBySubjectTextVIew"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_yellow_circle"
+        android:padding="@dimen/dimen_12dp"
+        android:text="@string/point_number_text"
+        android:textColor="@color/neutral_04_white"
+        android:layout_marginEnd="@dimen/dimen_30dp"
+        android:textAlignment="center"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/itemsRectangle"
+        app:layout_constraintTop_toTopOf="@+id/itemsRectangle" />
+
+
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/subjectIconImageView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dimen_30dp"
@@ -36,7 +55,7 @@
         app:layout_constraintTop_toTopOf="@+id/itemsRectangle" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/subjectTitleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dimen_18sp"
@@ -46,11 +65,11 @@
         android:textSize="@dimen/dimen_16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/itemsRectangle"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toEndOf="@+id/subjectIconImageView"
         app:layout_constraintTop_toTopOf="@+id/itemsRectangle" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/subjectDescriptionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="აღწერა"
@@ -59,6 +78,6 @@
         android:textSize="@dimen/dimen_12sp"
         android:textColor="@color/hint_text_color"
         app:layout_constraintBottom_toBottomOf="@+id/itemsRectangle"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/textView" />
+        app:layout_constraintStart_toEndOf="@+id/subjectIconImageView"
+        app:layout_constraintTop_toTopOf="@+id/subjectTitleTextView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

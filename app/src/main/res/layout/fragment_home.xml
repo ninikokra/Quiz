@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.home.HomeFragment">
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/helloUserTextView"
         android:layout_width="wrap_content"
@@ -22,7 +23,8 @@
     <com.space.quiz.presentation.views.RectangleView
         android:id="@+id/detailsRectangle"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_75dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.1"
         android:layout_marginHorizontal="@dimen/dimen_16dp"
         android:layout_marginTop="@dimen/dimen_20dp"
         app:rectangleBackgroundColor="@color/blue_secondary_default"

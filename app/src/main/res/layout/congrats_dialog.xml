@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -14,29 +15,21 @@
         app:layout_constraintTop_toTopOf="parent"
         app:rectangleBackgroundColor="@color/yellow_primary" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_39dp"
-        android:src="@drawable/ic_happy"
-        app:layout_constraintEnd_toEndOf="@+id/dialogRectangleView"
-        app:layout_constraintStart_toStartOf="@+id/dialogRectangleView"
-        app:layout_constraintTop_toTopOf="@+id/dialogRectangleView" />
-
     <TextView
         android:id="@+id/congratsTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_5dp"
+        android:font="@font/myriad_geo"
+        android:layout_marginTop="@dimen/dimen_34dp"
+        android:drawablePadding="@dimen/dimen_5dp"
         android:text="@string/congratulations_text"
         android:textColor="@color/neutral_04_white"
         android:textSize="@dimen/dimen_16sp"
-        android:font="@font/myriad_geo"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/dialogRectangleView"
         app:layout_constraintStart_toStartOf="@+id/dialogRectangleView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toTopOf="@+id/dialogRectangleView"
+        app:drawableTopCompat="@drawable/ic_happy" />
 
     <TextView
         android:id="@+id/earnedPointsTextView"
@@ -53,7 +46,7 @@
         app:layout_constraintTop_toBottomOf="@+id/congratsTextView" />
 
     <View
-        android:id="@+id/view2"
+        android:id="@+id/viewLine"
         android:layout_width="match_parent"
         android:layout_height="0.8dp"
         android:layout_marginHorizontal="@dimen/dimen_50dp"
@@ -64,6 +57,7 @@
         app:layout_constraintTop_toBottomOf="@+id/earnedPointsTextView" />
 
     <TextView
+        android:id="@+id/closeDialogButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:font="@font/myriad_geo"
@@ -71,7 +65,7 @@
         android:textColor="@color/neutral_04_white"
         android:textSize="@dimen/dimen_14sp"
         android:layout_marginTop="@dimen/dimen_10dp"
-        app:layout_constraintEnd_toEndOf="@+id/view2"
-        app:layout_constraintStart_toStartOf="@+id/view2"
-        app:layout_constraintTop_toBottomOf="@+id/view2" />
+        app:layout_constraintEnd_toEndOf="@+id/viewLine"
+        app:layout_constraintStart_toStartOf="@+id/viewLine"
+        app:layout_constraintTop_toBottomOf="@+id/viewLine" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,10 +6,12 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.questions.TestsFragment">
+
     <com.space.quiz.presentation.views.TestsTopCustomView
         android:id="@+id/testsTopRectangle"
         android:layout_width="wrap_content"
-        android:layout_height="230dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.25"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -54,6 +56,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleSubjectEditText" />
 
+    <!--   რისაიქლში height დროებით მაქვს გაწერილი სტატიკურად რომ დამენახა ელემენტები როგორ ჯდებოდა -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/answersRecyclerView"
         android:layout_width="match_parent"

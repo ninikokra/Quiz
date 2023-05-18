@@ -9,7 +9,8 @@
     <com.space.quiz.presentation.views.IntroCustomView
         android:id="@+id/blueRectCustomView"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_550dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
