@@ -2,40 +2,33 @@ package com.space.quiz.presentation.views
 
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Paint
 import android.graphics.Path
 import android.util.AttributeSet
-import android.view.View
 import com.space.quiz.R
 
 class TestsTopCustomView(
     context: Context,
     attrs: AttributeSet
-) : View(context, attrs) {
+) : BaseCustomView(context, attrs) {
 
-    private val fillPaint = Paint().apply {
-        style = Paint.Style.FILL
-    }
-    private val path = Path()
-
-    private val width get() = getWidth().toFloat()
-    private val height get() = getHeight().toFloat()
-
-    override fun onDraw(canvas: Canvas) {
-        super.onDraw(canvas)
-        drawVector(canvas)
-    }
-
-    private fun drawVector(canvas: Canvas) {
-
+    override fun drawCustomView(canvas: Canvas) {
+        /**the centerX represents the value of x-coordinate for the center
+         *it divides width of the view by 4*/
         val centerX1 = width / 4
+
+        /**the centerX represents the value of x-coordinate for the center
+         *multiplying the width of the view by 3 and then dividing it by 4.*/
         val centerX2 = width * 3 / 4
+        //represents the radius of the circles in the custom view
         val radius = width / 4
+
+        /**the centerY represents the y-coordinate for the center of the circles.
+        It is obtained by subtracting the radius value from the height of the view*/
         val centerY = height - radius
 
         path.apply {
             reset()
-            fillPaint.color = context.getColor(R.color.blue_secondary_light)
+            paint.color = context.getColor(R.color.blue_secondary_lighter)
             addCircle(centerX1, centerY, radius, Path.Direction.CW)
             addCircle(centerX2, centerY, radius, Path.Direction.CW)
 
@@ -49,6 +42,6 @@ class TestsTopCustomView(
             lineTo(0f, 0f)
             close()
         }
-        canvas.drawPath(path, fillPaint)
+        canvas.drawPath(path, paint)
     }
 }

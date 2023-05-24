@@ -17,19 +17,18 @@
 
     <TextView
         android:id="@+id/exitQuestionTextVIew"
+        style="@style/largeMyriadGeo_white_bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/dimen_39dp"
-        android:font="@font/myriad_geo"
         android:maxWidth="@dimen/dimen_250dp"
-        android:text="ნამდვილად გსურს ქვიზის შეწყვეტა?"
+        android:text="@string/dialog_quiz_quit_text"
         android:textAlignment="center"
-        android:textColor="@color/neutral_04_white"
-        android:textSize="@dimen/dimen_16sp"
         app:layout_constraintBottom_toBottomOf="@+id/dialogRectangleView"
         app:layout_constraintEnd_toEndOf="@+id/dialogRectangleView"
         app:layout_constraintStart_toStartOf="@+id/dialogRectangleView"
         app:layout_constraintTop_toTopOf="@+id/dialogRectangleView" />
+
     <com.space.quiz.presentation.views.RectangleView
         android:id="@+id/yesRectangle"
         android:layout_width="@dimen/dimen_106dp"
@@ -38,14 +37,14 @@
         android:layout_marginTop="@dimen/dimen_28dp"
         app:layout_constraintStart_toStartOf="@+id/dialogRectangleView"
         app:layout_constraintTop_toBottomOf="@+id/exitQuestionTextVIew"
-        app:rectangleBackgroundColor="@color/neutral_03_light_grey" />
+        app:rectangleBackgroundColor="@color/dialog_button_color" />
+
     <TextView
         android:id="@+id/yesTextView"
+        style="@style/largeMyriadGeo_darkGrey_bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/neutral_01_dark_grey"
-        android:text="კი"
-        android:textSize="@dimen/dimen_16sp"
+        android:text="@string/yes_button_text"
         app:layout_constraintBottom_toBottomOf="@+id/yesRectangle"
         app:layout_constraintEnd_toEndOf="@+id/yesRectangle"
         app:layout_constraintStart_toStartOf="@+id/yesRectangle"
@@ -59,15 +58,14 @@
         android:layout_marginTop="@dimen/dimen_28dp"
         app:layout_constraintStart_toEndOf="@+id/yesRectangle"
         app:layout_constraintTop_toBottomOf="@+id/exitQuestionTextVIew"
-        app:rectangleBackgroundColor="@color/neutral_03_light_grey" />
+        app:rectangleBackgroundColor="@color/dialog_button_color" />
 
     <TextView
         android:id="@+id/noTextView"
+        style="@style/mediumMyriadGeo_darkGrey_bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="არა"
-        android:textColor="@color/neutral_01_dark_grey"
-        android:textSize="@dimen/dimen_16sp"
+        android:text="@string/no_button_text"
         app:layout_constraintBottom_toBottomOf="@+id/noRectangle"
         app:layout_constraintEnd_toEndOf="@+id/noRectangle"
         app:layout_constraintStart_toStartOf="@+id/noRectangle"

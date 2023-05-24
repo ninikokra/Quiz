@@ -5,16 +5,14 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
-import android.view.View
 import com.space.quiz.R
 
 class RectangleView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : View(context, attrs, defStyleAttr) {
+) : BaseCustomView(context, attrs) {
 
-    private val paint = Paint()
     private var rectangleBackgroundColor: Int = Color.BLUE
 
     init {
@@ -25,8 +23,8 @@ class RectangleView @JvmOverloads constructor(
         paint.color = rectangleBackgroundColor
         paint.style = Paint.Style.FILL
     }
-    override fun onDraw(canvas: Canvas) {
-        super.onDraw(canvas)
+
+    override fun drawCustomView(canvas: Canvas) {
         val width = width.toFloat()
         val height = height.toFloat()
         val radius = width.coerceAtMost(height) / 3

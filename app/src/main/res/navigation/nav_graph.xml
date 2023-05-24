@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_homeFragment_to_testFragment"
             app:destination="@id/testFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/testFragment"
@@ -30,4 +33,9 @@
         tools:layout="@layout/fragment_tests">
 
     </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.space.quiz.presentation.details.DetailsFragment"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details" />
 </navigation>

@@ -1,60 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.questions.TestsFragment">
 
     <com.space.quiz.presentation.views.TestsTopCustomView
         android:id="@+id/testsTopRectangle"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.25"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.25"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/titleSubjectEditText"
+        style="@style/largeMyriadGeo_darkGrey_bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_20dp"
-        tools:text="პროგრამირება"
-        android:textColor="@color/neutral_01_dark_grey"
-        android:font="@font/myriad_geo"
-        android:textSize="@dimen/dimen_16sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/testsTopRectangle"
-        app:layout_constraintTop_toTopOf="@+id/testsTopRectangle" />
+        app:layout_constraintTop_toTopOf="@+id/testsTopRectangle"
+        tools:text="პროგრამირება" />
 
     <ImageView
         android:id="@+id/cancelButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_20dp"
-        android:layout_marginEnd="@dimen/dimen_20dp"
+        android:layout_margin="@dimen/dimen_20dp"
         android:src="@drawable/ic_cancel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/testsQuestionTextView"
+        style="@style/mediumMyriadGeo_darkGrey_bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_48dp"
+        android:maxWidth="@dimen/dimen_300dp"
         android:textAlignment="center"
-        android:font="@font/myriad_geo"
-        android:textStyle="bold"
-        tools:text="რომელია ყველაზე პოპულარული პროგრამირების ენა?"
-        android:maxWidth="300dp"
-        android:textSize="@dimen/dimen_14sp"
-        android:textColor="@color/neutral_01_dark_grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleSubjectEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/titleSubjectEditText"
+        tools:text="რომელია ყველაზე პოპულარული პროგრამირების ენა?" />
 
     <!--   რისაიქლში height დროებით მაქვს გაწერილი სტატიკურად რომ დამენახა ელემენტები როგორ ჯდებოდა -->
     <androidx.recyclerview.widget.RecyclerView
@@ -64,24 +56,22 @@
         android:layout_marginTop="@dimen/dimen_60dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/testsTopRectangle"
         tools:listitem="@layout/questions_item" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/nextQuestionButton"
+        style="@style/mediumMyriadGeo_white_bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_60dp"
-        android:font="@font/myriad_geo"
-        android:letterSpacing="0"
         android:layout_marginHorizontal="@dimen/dimen_16dp"
+        android:layout_marginTop="@dimen/dimen_60dp"
+        android:letterSpacing="0"
         android:paddingHorizontal="@dimen/dimen_24dp"
         android:paddingVertical="@dimen/dimen_14dp"
         android:text="@string/next_button_text"
         android:textAllCaps="false"
-        android:textStyle="bold"
         app:backgroundTint="@color/yellow_primary"
         app:cornerRadius="@dimen/dimen_12dp"
         app:layout_constraintEnd_toEndOf="parent"

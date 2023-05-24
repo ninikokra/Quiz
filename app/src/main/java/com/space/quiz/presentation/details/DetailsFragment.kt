@@ -15,6 +15,5 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
         return FragmentDetailsBinding::inflate
     }
     override fun onBind() {
-        TODO("Not yet implemented")
     }
 }

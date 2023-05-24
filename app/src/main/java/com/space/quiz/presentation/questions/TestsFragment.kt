@@ -14,7 +14,7 @@ class TestsFragment : BaseFragment<FragmentTestsBinding>() {
     override fun inflate(): Inflater<FragmentTestsBinding> {
         return FragmentTestsBinding::inflate
     }
+
     override fun onBind() {
-        TODO("Not yet implemented")
     }
 }

@@ -1,44 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="wrap_content">
 
     <com.space.quiz.presentation.views.RectangleView
         android:id="@+id/questionsRectangleView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.83"
         android:layout_marginHorizontal="@dimen/dimen_16dp"
         android:layout_marginTop="@dimen/dimen_12dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.83"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:rectangleBackgroundColor="@color/success" />
 
     <TextView
         android:id="@+id/answersTextView"
+        style="@style/mediumMyriadGeo_white_Normal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dimen_30dp"
-        android:font="@font/myriad_geo"
-        tools:text="@tools:sample/lorem"
-        android:textColor="@color/neutral_04_white"
-        android:textSize="@dimen/dimen_14sp"
         app:layout_constraintBottom_toBottomOf="@+id/questionsRectangleView"
         app:layout_constraintStart_toStartOf="@+id/questionsRectangleView"
-        app:layout_constraintTop_toTopOf="@+id/questionsRectangleView" />
+        app:layout_constraintTop_toTopOf="@+id/questionsRectangleView"
+        tools:text="@tools:sample/lorem" />
 
     <TextView
+        android:id="@+id/pointTokenTextview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dimen_24dp"
+        android:drawablePadding="@dimen/dimen_5dp"
         android:text="@string/point_text"
         android:textColor="@color/neutral_04_white"
-        android:drawablePadding="@dimen/dimen_5dp"
-        android:layout_marginEnd="@dimen/dimen_24dp"
+        app:drawableRightCompat="@drawable/ic_star"
         app:layout_constraintBottom_toBottomOf="@+id/questionsRectangleView"
         app:layout_constraintEnd_toEndOf="@+id/questionsRectangleView"
-        app:layout_constraintTop_toTopOf="@+id/questionsRectangleView"
-        app:drawableRightCompat="@drawable/ic_star" />
+        app:layout_constraintTop_toTopOf="@+id/questionsRectangleView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

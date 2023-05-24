@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.space.quiz.R
 import com.space.quiz.databinding.FragmentHomeBinding
 import com.space.quiz.databinding.FragmentIntroBinding
@@ -17,13 +18,16 @@ class IntroFragment : BaseFragment<FragmentIntroBinding>() {
     override fun inflate(): Inflater<FragmentIntroBinding> {
         return FragmentIntroBinding::inflate
     }
+
     override fun onBind() {
         binding.introStartQuizButton.setOnClickListener {
-            val home = HomeFragment()
-            activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(R.id.mainContainer,home)?.addToBackStack(null)
-                ?.commit()
+            navigation()
         }
     }
 
+    private fun navigation() {
+        findNavController().navigate(
+            R.id.action_introFragment_to_homeFragment
+        )
+    }
 }
