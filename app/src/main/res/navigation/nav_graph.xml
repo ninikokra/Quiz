@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_homeFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_introFragment"
+            app:destination="@id/introFragment" />
     </fragment>
     <fragment
         android:id="@+id/testFragment"
@@ -32,6 +35,9 @@
         android:label="fragment_tests"
         tools:layout="@layout/fragment_tests">
 
+        <action
+            android:id="@+id/action_testFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"

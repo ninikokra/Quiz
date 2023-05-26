@@ -19,4 +19,5 @@
     <string name="no_button_text">არა</string>
     <string name="dialog_quiz_quit_text">ნამდვილად გსურს ქვიზის შეწყვეტა?</string>
     <string name="dialog_exit_text">ნამდვილად გსურს გასვლა?</string>
+    <string name="congrats_icon_text">🎉</string>
 </resources>
