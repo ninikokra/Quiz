@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -16,7 +15,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:rectangleBackgroundColor="@color/yellow_primary" />
 
-    <!--Congrats state-->
+    <!-- Congrats State -->
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/congratsGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="congratsIcon, congratsTextView, earnedPointsTextView, viewLine, closeDialogButton" />
+
     <TextView
         android:id="@+id/congratsIcon"
         android:layout_width="wrap_content"
@@ -24,7 +31,6 @@
         android:layout_marginTop="@dimen/dimen_39dp"
         android:text="@string/congrats_icon_text"
         android:textSize="@dimen/dimen_32sp"
-        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@+id/dialogRectangleView"
         app:layout_constraintStart_toStartOf="@+id/dialogRectangleView"
         app:layout_constraintTop_toTopOf="parent" />
@@ -37,7 +43,6 @@
         android:layout_marginTop="@dimen/dimen_10dp"
         android:drawablePadding="@dimen/dimen_5dp"
         android:text="@string/congratulations_text"
-        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@+id/dialogRectangleView"
         app:layout_constraintStart_toStartOf="@+id/dialogRectangleView"
         app:layout_constraintTop_toBottomOf="@+id/congratsIcon" />
@@ -49,7 +54,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_10dp"
         android:text="@string/points_text"
-        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@+id/dialogRectangleView"
         app:layout_constraintStart_toStartOf="@+id/dialogRectangleView"
         app:layout_constraintTop_toBottomOf="@+id/congratsTextView" />
@@ -61,7 +65,6 @@
         android:layout_marginHorizontal="@dimen/dimen_27dp"
         android:layout_marginBottom="@dimen/dimen_12dp"
         android:background="@color/neutral_04_white"
-        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/closeDialogButton"
         app:layout_constraintEnd_toEndOf="@+id/dialogRectangleView"
         app:layout_constraintStart_toStartOf="@+id/dialogRectangleView" />
@@ -73,14 +76,21 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_14dp"
         android:layout_marginBottom="@dimen/dimen_27dp"
-        android:text="@string/text_close"
         android:padding="@dimen/dimen_3dp"
-        android:visibility="gone"
+        android:text="@string/text_close"
         app:layout_constraintBottom_toBottomOf="@+id/dialogRectangleView"
         app:layout_constraintEnd_toEndOf="@+id/viewLine"
         app:layout_constraintStart_toStartOf="@+id/viewLine" />
 
-    <!--Exit/Close State-->
+    <!-- Exit/Close State -->
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/exitCloseGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="exitQuestionTextVIew, yesTextView, noTextView" />
+
     <TextView
         android:id="@+id/exitQuestionTextVIew"
         style="@style/largeMyriadGeo_white_bold"
@@ -90,7 +100,6 @@
         android:maxWidth="@dimen/dimen_250dp"
         android:text="@string/dialog_quiz_quit_text"
         android:textAlignment="center"
-        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/dialogRectangleView"
         app:layout_constraintEnd_toEndOf="@+id/dialogRectangleView"
         app:layout_constraintStart_toStartOf="@+id/dialogRectangleView"
@@ -101,11 +110,10 @@
         style="@style/largeMyriadGeo_darkGrey_bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/bckg_textview_shape"
+        android:background="@drawable/bkg_textview_shape"
         android:padding="@dimen/dimen_3dp"
         android:text="@string/yes_button_text"
         android:textAlignment="center"
-        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/noTextView"
         app:layout_constraintStart_toStartOf="@+id/dialogRectangleView"
@@ -116,12 +124,12 @@
         style="@style/largeMyriadGeo_darkGrey_bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/bckg_textview_shape"
+        android:background="@drawable/bkg_textview_shape"
         android:padding="@dimen/dimen_3dp"
         android:text="@string/no_button_text"
         android:textAlignment="center"
-        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/exitQuestionTextVIew"
         app:layout_constraintTop_toBottomOf="@+id/exitQuestionTextVIew" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,7 +23,6 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/dimen_30dp"
         android:src="@drawable/ic_button_subject"
-        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/itemsRectangle"
         app:layout_constraintEnd_toEndOf="@+id/itemsRectangle"
         app:layout_constraintTop_toTopOf="@+id/itemsRectangle" />

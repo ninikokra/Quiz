@@ -7,7 +7,7 @@ import android.graphics.Path
 import android.util.AttributeSet
 import android.view.View
 
-open class BaseCustomView(
+abstract class BaseCustomView(
     context: Context,
     attrs: AttributeSet?
 ) : View(context, attrs) {

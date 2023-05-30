@@ -1,13 +1,15 @@
 package com.space.quiz.presentation.dialog
 
+import android.app.AlertDialog
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.view.View
 import android.widget.FrameLayout
-import android.widget.TextView
 import com.space.quiz.R
 import com.space.quiz.databinding.CustomDialogBinding
+import com.space.quiz.utils.isVisible
 
 class CustomDialogView @JvmOverloads constructor(
     context: Context,
@@ -18,43 +20,60 @@ class CustomDialogView @JvmOverloads constructor(
     private val binding: CustomDialogBinding =
         CustomDialogBinding.inflate(LayoutInflater.from(context), this, true)
 
+    private lateinit var alertDialog: AlertDialog
+
+    init {
+        setupDialog()
+    }
+
+    private fun setupDialog() {
+        val alertDialogBuilder = AlertDialog.Builder(context)
+        alertDialogBuilder.setView(this)
+
+        alertDialog = alertDialogBuilder.create()
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+    }
+
+    fun showDialog() {
+        alertDialog.show()
+    }
+
     fun showCloseState() {
         with(binding) {
-            exitQuestionTextVIew.visibility = View.VISIBLE
-            yesTextView.visibility = View.VISIBLE
-            noTextView.visibility = View.VISIBLE
+            congratsGroup.isVisible(true)
             exitQuestionTextVIew.text = context.getString(R.string.dialog_quiz_quit_text)
         }
     }
 
     fun showExitState() {
         with(binding) {
-            exitQuestionTextVIew.visibility = View.VISIBLE
-            yesTextView.visibility = View.VISIBLE
-            noTextView.visibility = View.VISIBLE
+            exitCloseGroup.isVisible(true)
             exitQuestionTextVIew.text = context.getString(R.string.dialog_exit_text)
         }
     }
 
     fun showCongratsState() {
-        with(binding) {
-            congratsIcon.visibility = View.VISIBLE
-            congratsTextView.visibility = View.VISIBLE
-            earnedPointsTextView.visibility = View.VISIBLE
-            viewLine.visibility = View.VISIBLE
-            closeDialogButton.visibility = View.VISIBLE
+        binding.congratsGroup.isVisible(true)
+    }
+
+    fun setPositiveButtonClickListener(onClickListener: () -> Unit) {
+        binding.yesTextView.setOnClickListener {
+            onClickListener.invoke()
+            alertDialog.dismiss()
         }
     }
 
-    fun getPositiveButton(): TextView {
-        return binding.yesTextView
+    fun setNegativeButtonClickListener(onClickListener: () -> Unit) {
+        binding.noTextView.setOnClickListener {
+            onClickListener.invoke()
+            alertDialog.dismiss()
+        }
     }
 
-    fun getNegativeButton(): TextView {
-        return binding.noTextView
-    }
-
-    fun getNeutralButton(): TextView {
-        return binding.closeDialogButton
+    fun setNeutralButtonClickListener(onClickListener: () -> Unit) {
+        binding.closeDialogButton.setOnClickListener {
+            onClickListener.invoke()
+            alertDialog.dismiss()
+        }
     }
 }

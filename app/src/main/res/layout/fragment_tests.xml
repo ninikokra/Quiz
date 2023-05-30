@@ -48,16 +48,16 @@
         app:layout_constraintTop_toBottomOf="@+id/titleSubjectEditText"
         tools:text="რომელია ყველაზე პოპულარული პროგრამირების ენა?" />
 
-    <!--   რისაიქლში height დროებით მაქვს გაწერილი სტატიკურად რომ დამენახა ელემენტები როგორ ჯდებოდა -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/answersRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="0dp"
         android:layout_marginTop="@dimen/dimen_60dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/testsTopRectangle"
+        tools:itemCount="4"
         tools:listitem="@layout/questions_item" />
 
     <com.google.android.material.button.MaterialButton
