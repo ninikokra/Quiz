@@ -10,6 +10,7 @@
     <string name="point_text">+1</string>
     <string name="text_close">დახურვა</string>
     <string name="text_finish">დასრულება</string>
+    <string name="subject_text">პროგრამირება</string>
     <string name="points_text">შენ დააგროვე %1$d ქულა</string>
     <string name="congratulations_text">გილოცავ!</string>
     <string name="earned_points_text">დაგროვილი ქულები</string>

@@ -6,6 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".presentation.questions.TestsFragment">
 
+    <com.space.quiz.presentation.views.CustomTitleView
+        android:id="@+id/customTitleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/testsTopRectangle"
+        app:layout_constraintTop_toTopOf="@+id/testsTopRectangle" />
+
     <com.space.quiz.presentation.views.TestsTopCustomView
         android:id="@+id/testsTopRectangle"
         android:layout_width="wrap_content"
@@ -13,26 +21,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.25"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/titleSubjectEditText"
-        style="@style/largeMyriadGeo_darkGrey_bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/testsTopRectangle"
-        app:layout_constraintTop_toTopOf="@+id/testsTopRectangle"
-        tools:text="პროგრამირება" />
-
-    <ImageView
-        android:id="@+id/cancelButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dimen_20dp"
-        android:src="@drawable/ic_cancel"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -45,7 +33,7 @@
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleSubjectEditText"
+        app:layout_constraintTop_toBottomOf="@+id/customTitleView"
         tools:text="რომელია ყველაზე პოპულარული პროგრამირების ენა?" />
 
     <androidx.recyclerview.widget.RecyclerView

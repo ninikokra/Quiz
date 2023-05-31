@@ -57,6 +57,7 @@
         android:layout_marginEnd="@dimen/dimen_32dp"
         android:drawableEnd="@drawable/ic_arrow_white"
         android:drawablePadding="@dimen/dimen_5dp"
+        android:padding="@dimen/dimen_5dp"
         android:text="@string/details_text"
         app:layout_constraintBottom_toBottomOf="@+id/detailsRectangle"
         app:layout_constraintEnd_toEndOf="@+id/detailsRectangle"

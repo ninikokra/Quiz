@@ -15,6 +15,21 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         binding.logOutButton.setOnClickListener {
             showDialog()
         }
+        detailsFragment()
+        questionsFragment()
+
+    }
+
+    private fun detailsFragment() {
+        binding.detailsTextViewButton.setOnClickListener {
+            navigateTo(R.id.action_homeFragment_to_detailsFragment)
+        }
+    }
+
+    private fun questionsFragment() {
+        binding.chooseSubjectTextView.setOnClickListener {
+            navigateTo(R.id.action_homeFragment_to_testFragment)
+        }
     }
 
     private fun showDialog() {
