@@ -18,20 +18,22 @@ class CustomTitleView @JvmOverloads constructor(
         CustomTitleViewBinding.inflate(LayoutInflater.from(context), this, true)
 
     fun collectedPointsToolBar() {
-        val drawableIcon = ContextCompat.getDrawable(context, R.drawable.ic_yellow_star)
-        drawableIcon?.setBounds(0, 0, drawableIcon.intrinsicWidth, drawableIcon.intrinsicHeight)
-        binding.titleTextView.setCompoundDrawables(null, null, drawableIcon, null)
-        binding.titleTextView.text = context.getString(R.string.earned_points_text)
-
-        val backDrawable = ContextCompat.getDrawable(context, R.drawable.ic_arrow_left)
-        binding.backButtonImageView.setImageDrawable(backDrawable)
-
+        with(binding) {
+            val drawableIcon = ContextCompat.getDrawable(context, R.drawable.ic_yellow_star)
+            drawableIcon?.setBounds(0, 0, drawableIcon.intrinsicWidth, drawableIcon.intrinsicHeight)
+            titleTextView.setCompoundDrawables(null, null, drawableIcon, null)
+            titleTextView.text = context.getString(R.string.earned_points_text)
+            val backDrawable = ContextCompat.getDrawable(context, R.drawable.ic_arrow_left)
+            backButtonImageView.setImageDrawable(backDrawable)
+        }
     }
 
     fun subjectTitleToolBar() {
-        val cancelDrawable = ContextCompat.getDrawable(context, R.drawable.ic_cancel)
-        binding.cancelButtonImageView.setImageDrawable(cancelDrawable)
-        binding.titleTextView.text = context.getString(R.string.subject_text)
+        with(binding) {
+            val cancelDrawable = ContextCompat.getDrawable(context, R.drawable.ic_cancel)
+            cancelButtonImageView.setImageDrawable(cancelDrawable)
+            titleTextView.text = context.getString(R.string.subject_text)
+        }
     }
 
     fun setCancelButton(onClickListener: () -> Unit) {

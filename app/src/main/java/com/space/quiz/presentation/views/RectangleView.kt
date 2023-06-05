@@ -25,8 +25,8 @@ class RectangleView @JvmOverloads constructor(
     }
 
     override fun drawCustomView(canvas: Canvas) {
-        val width = width.toFloat()
-        val height = height.toFloat()
+        val width = width
+        val height = height
         val radius = width.coerceAtMost(height) / 4
         canvas.drawRoundRect(0f, 5f, width, height, radius, radius, paint)
     }
