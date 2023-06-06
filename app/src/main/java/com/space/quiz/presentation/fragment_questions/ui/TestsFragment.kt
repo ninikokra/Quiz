@@ -1,22 +1,23 @@
-package com.space.quiz.presentation.questions
+package com.space.quiz.presentation.fragment_questions.ui
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import com.space.quiz.R
 import com.space.quiz.databinding.FragmentTestsBinding
 import com.space.quiz.presentation.base.BaseFragment
 import com.space.quiz.presentation.base.Inflater
+import com.space.quiz.presentation.fragment_questions.vm.QuestionsViewModel
 import com.space.quiz.presentation.views.CustomTitleView
+import kotlin.reflect.KClass
 
-class TestsFragment : BaseFragment<FragmentTestsBinding>() {
+class TestsFragment : BaseFragment<FragmentTestsBinding, QuestionsViewModel>() {
+
+    override val viewModelClass: KClass<QuestionsViewModel>
+        get() = QuestionsViewModel::class
+
     override fun inflate(): Inflater<FragmentTestsBinding> {
         return FragmentTestsBinding::inflate
     }
 
-    override fun onBind() {
+    override fun onBind(viewModel: QuestionsViewModel) {
         showTitleVIew()
     }
 

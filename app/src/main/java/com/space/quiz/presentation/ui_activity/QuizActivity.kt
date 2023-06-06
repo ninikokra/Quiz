@@ -1,9 +1,10 @@
-package com.space.quiz
+package com.space.quiz.presentation.ui_activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import com.space.quiz.R
 import com.space.quiz.databinding.ActivityQuizBinding
 
 class QuizActivity : AppCompatActivity() {

@@ -3,7 +3,7 @@
     <string name="my_first_quiz">ჩემი პირველი ქვიზი</string>
     <string name="enter_name">შეიყვანე სახელი</string>
     <string name="start_quiz">ქვიზის დაწყება</string>
-    <string name="hello_user_text">გამარჯობა,%1$s</string>
+    <string name="hello_user_text">გამარჯობა, %1$s</string>
     <string name="details_text">დეტალურად</string>
     <string name="choose_subject_text">აირჩიე საგანი</string>
     <string name="next_button_text">შემდეგი</string>
@@ -14,11 +14,13 @@
     <string name="points_text">შენ დააგროვე %1$d ქულა</string>
     <string name="congratulations_text">გილოცავ!</string>
     <string name="earned_points_text">დაგროვილი ქულები</string>
-    <string name="no_result_point_text">🧐სამწუხაროდ,ქულები ჯერ არ გაქვს დაგროვილი.</string>
+    <string name="no_result_point_text">🧐\nსამწუხაროდ, ქულები ჯერ არ გაქვს დაგროვილი.</string>
     <string name="gpa_4_0">GPA - %1$.1f</string>
     <string name="yes_button_text">კი</string>
     <string name="no_button_text">არა</string>
     <string name="dialog_quiz_quit_text">ნამდვილად გსურს ქვიზის შეწყვეტა?</string>
     <string name="dialog_exit_text">ნამდვილად გსურს გასვლა?</string>
     <string name="congrats_icon_text">🎉</string>
+    <string name="invalid_username_text">მომხმარებლის სახელი არასწორია</string>
+    <string name="insert_username">შეიყვანეთ მომხმარებლის სახელი</string>
 </resources>

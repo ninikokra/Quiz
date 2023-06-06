@@ -1,17 +1,25 @@
-package com.space.quiz.presentation.home
+package com.space.quiz.presentation.fragment_home.ui
 
+import androidx.core.content.ContentProviderCompat.requireContext
 import com.space.quiz.R
 import com.space.quiz.databinding.FragmentHomeBinding
 import com.space.quiz.presentation.base.BaseFragment
 import com.space.quiz.presentation.base.Inflater
 import com.space.quiz.presentation.dialog.CustomDialogView
+import com.space.quiz.presentation.fragment_home.vm.HomeViewModel
+import com.space.quiz.presentation.fragment_intro.vm.IntroViewModel
+import kotlin.reflect.KClass
 
-class HomeFragment : BaseFragment<FragmentHomeBinding>() {
+class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
+
+    override val viewModelClass: KClass<HomeViewModel>
+        get() = HomeViewModel::class
+
     override fun inflate(): Inflater<FragmentHomeBinding> {
         return FragmentHomeBinding::inflate
     }
 
-    override fun onBind() {
+    override fun onBind(viewModel: HomeViewModel) {
         binding.logOutButton.setOnClickListener {
             showDialog()
         }

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/introFragment"
-        android:name="com.space.quiz.presentation.intro.IntroFragment"
+        android:name="com.space.quiz.presentation.fragment_intro.ui.IntroFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_intro">
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.space.quiz.presentation.home.HomeFragment"
+        android:name="com.space.quiz.presentation.fragment_home.ui.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
         <action
@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/testFragment"
-        android:name="com.space.quiz.presentation.questions.TestsFragment"
+        android:name="com.space.quiz.presentation.fragment_questions.ui.TestsFragment"
         android:label="fragment_tests"
         tools:layout="@layout/fragment_tests">
 
@@ -41,7 +41,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
-        android:name="com.space.quiz.presentation.details.DetailsFragment"
+        android:name="com.space.quiz.presentation.fragment_details.ui.DetailsFragment"
         android:label="fragment_details"
         tools:layout="@layout/fragment_details" >
         <action
