@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.intro.IntroFragment">
+
+    <com.space.quiz.presentation.views.IntroCustomView
+        android:id="@+id/blueRectCustomView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/myFirstQuizTextView"
+        style="@style/xxlMyriadGeo_white_bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/my_first_quiz"
+        app:layout_constraintBottom_toTopOf="@+id/introLogoImageView"
+        app:layout_constraintEnd_toEndOf="@+id/blueRectCustomView"
+        app:layout_constraintStart_toStartOf="@+id/blueRectCustomView"
+        app:layout_constraintTop_toTopOf="@+id/blueRectCustomView" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/introLogoImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dimen_20dp"
+        android:src="@drawable/ic_intro_illustration"
+        app:layout_constraintBottom_toBottomOf="@+id/blueRectCustomView"
+        app:layout_constraintEnd_toEndOf="@+id/blueRectCustomView"
+        app:layout_constraintStart_toStartOf="@+id/blueRectCustomView" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/inputNameEditText"
+        style="@style/smallMyriadGeo_lGrey_hint_normal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_40dp"
+        android:background="@drawable/input_edittext_shape"
+        android:hint="@string/enter_name"
+        android:minHeight="@dimen/dimen_48dp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/blueRectCustomView" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/introStartQuizButton"
+        style="@style/smallMyriadGeo_white_bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_20dp"
+        android:letterSpacing="0"
+        android:paddingHorizontal="@dimen/dimen_24dp"
+        android:paddingVertical="@dimen/dimen_14dp"
+        android:text="@string/start_quiz"
+        android:textAllCaps="false"
+        app:backgroundTint="@color/yellow_primary"
+        app:cornerRadius="@dimen/dimen_12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputNameEditText" />
+</androidx.constraintlayout.widget.ConstraintLayout>
