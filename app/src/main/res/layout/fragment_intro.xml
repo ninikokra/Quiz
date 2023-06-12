@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.fragment_intro.ui.IntroFragment">
+    tools:context=".presentation.ui_intro.ui.IntroFragment">
 
-    <com.space.quiz.presentation.views.IntroCustomView
-        android:id="@+id/blueRectCustomView"
+    <com.space.quiz.presentation.views.IntroView
+        android:id="@+id/RectCustomView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,9 +22,9 @@
         android:layout_height="wrap_content"
         android:text="@string/my_first_quiz"
         app:layout_constraintBottom_toTopOf="@+id/introLogoImageView"
-        app:layout_constraintEnd_toEndOf="@+id/blueRectCustomView"
-        app:layout_constraintStart_toStartOf="@+id/blueRectCustomView"
-        app:layout_constraintTop_toTopOf="@+id/blueRectCustomView" />
+        app:layout_constraintEnd_toEndOf="@+id/RectCustomView"
+        app:layout_constraintStart_toStartOf="@+id/RectCustomView"
+        app:layout_constraintTop_toTopOf="@+id/RectCustomView" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/introLogoImageView"
@@ -32,9 +32,9 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/dimen_20dp"
         android:src="@drawable/ic_intro_illustration"
-        app:layout_constraintBottom_toBottomOf="@+id/blueRectCustomView"
-        app:layout_constraintEnd_toEndOf="@+id/blueRectCustomView"
-        app:layout_constraintStart_toStartOf="@+id/blueRectCustomView" />
+        app:layout_constraintBottom_toBottomOf="@+id/RectCustomView"
+        app:layout_constraintEnd_toEndOf="@+id/RectCustomView"
+        app:layout_constraintStart_toStartOf="@+id/RectCustomView" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/inputNameEditText"
@@ -43,12 +43,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_40dp"
         android:background="@drawable/input_edittext_shape"
-        android:hint="@string/enter_name"
+        android:hint="@string/enter_name_text"
         android:minHeight="@dimen/dimen_48dp"
+        android:paddingHorizontal="@dimen/dimen_8dp"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/blueRectCustomView" />
+        app:layout_constraintTop_toBottomOf="@+id/RectCustomView" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/introStartQuizButton"
@@ -59,7 +60,7 @@
         android:letterSpacing="0"
         android:paddingHorizontal="@dimen/dimen_24dp"
         android:paddingVertical="@dimen/dimen_14dp"
-        android:text="@string/start_quiz"
+        android:text="@string/start_quiz_text"
         android:textAllCaps="false"
         app:backgroundTint="@color/yellow_primary"
         app:cornerRadius="@dimen/dimen_12dp"

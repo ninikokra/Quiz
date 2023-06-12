@@ -1,5 +1,6 @@
 package com.space.quiz.utils
 
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
@@ -12,15 +13,21 @@ fun ViewModel.viewModelScope(
     viewModelScope.launch { block() }
 }
 
-fun <T> LifecycleOwner.collectInLifecycleScope(
-    flow: Flow<T>,
-    action: suspend (value: T) -> Unit
+fun <FL> Fragment.collectInLifecycleScope(
+    flow: Flow<FL>,
+    action: suspend (value: FL) -> Unit
 ): Job {
-    return lifecycleScope.launch {
-        lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+    return viewLifecycleOwner.lifecycleScope.launch {
+        viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
             flow.collect { value ->
                 action(value)
             }
         }
+    }
+}
+
+fun Fragment.lifecycleScope(block: suspend CoroutineScope.() -> Unit) {
+    viewLifecycleOwner.lifecycleScope.launch {
+        block()
     }
 }

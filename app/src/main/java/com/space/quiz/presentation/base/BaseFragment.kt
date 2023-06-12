@@ -5,15 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
+import com.space.quiz.utils.lifecycleScope
+import com.space.quiz.utils.navigation.NavigationCommand
 import org.koin.androidx.viewmodel.ext.android.viewModelForClass
 import kotlin.reflect.KClass
 
 typealias Inflater<VB> = (inflater: LayoutInflater, container: ViewGroup, attachToRoot: Boolean) -> VB
 
-abstract class BaseFragment<VB : ViewBinding,VM: ViewModel> : Fragment() {
+abstract class BaseFragment<VB : ViewBinding,VM: BaseViewModel> : Fragment() {
 
     private val viewModel: VM by viewModelForClass(clazz = viewModelClass)
     abstract val viewModelClass: KClass<VM>
@@ -36,11 +37,25 @@ abstract class BaseFragment<VB : ViewBinding,VM: ViewModel> : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         onBind(viewModel)
+        observeNavigation()
     }
 
-    fun navigateTo(destinationId: Int) {
+  /*  fun navigateTo(destinationId: Int) {
         val navController = findNavController()
         navController.navigate(destinationId)
+    }*/
+    private fun observeNavigation() {
+        lifecycleScope {
+            viewModel.navigation.collect { navigationCommand ->
+                handleNavigation(navigationCommand)
+            }
+        }
+    }
+    private fun handleNavigation(navCommand: NavigationCommand) {
+        when (navCommand) {
+            is NavigationCommand.ToDirection -> findNavController().navigate(navCommand.directions)
+            is NavigationCommand.Back -> findNavController().navigateUp()
+        }
     }
 
     override fun onDestroyView() {

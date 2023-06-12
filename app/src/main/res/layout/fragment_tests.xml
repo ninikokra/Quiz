@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.fragment_questions.ui.TestsFragment">
+    tools:context=".presentation.ui_questions.ui.QuestionsFragment">
 
-    <com.space.quiz.presentation.views.CustomTitleView
+    <com.space.quiz.presentation.views.HeaderView
         android:id="@+id/customTitleView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,7 +14,7 @@
         app:layout_constraintStart_toStartOf="@+id/testsTopRectangle"
         app:layout_constraintTop_toTopOf="@+id/testsTopRectangle" />
 
-    <com.space.quiz.presentation.views.TestsTopCustomView
+    <com.space.quiz.presentation.views.QuestionsTopView
         android:id="@+id/testsTopRectangle"
         android:layout_width="wrap_content"
         android:layout_height="0dp"

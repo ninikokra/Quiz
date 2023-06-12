@@ -10,6 +10,6 @@ interface UserDao {
     @Insert
     suspend fun saveUser(user: UserEntity)
 
-    @Query("SELECT * FROM users WHERE userName = :username")
-    suspend fun getUserName(username: String): UserEntity?
+    @Query("SELECT * FROM users WHERE userName = :userName")
+    suspend fun getUserName(userName: String): UserEntity?
 }

@@ -1,0 +1,56 @@
+package com.space.quiz.presentation.ui_intro.ui
+
+import com.space.quiz.R
+import com.space.quiz.databinding.FragmentIntroBinding
+import com.space.quiz.presentation.base.BaseFragment
+import com.space.quiz.presentation.base.Inflater
+import com.space.quiz.presentation.views.dialog.CustomDialogView
+import com.space.quiz.presentation.ui_intro.vm.IntroViewModel
+import com.space.quiz.presentation.model.UserUIModel
+import com.space.quiz.utils.collectInLifecycleScope
+import com.space.quiz.utils.showToast
+import kotlin.reflect.KClass
+
+class IntroFragment : BaseFragment<FragmentIntroBinding, IntroViewModel>() {
+
+    override val viewModelClass: KClass<IntroViewModel>
+        get() = IntroViewModel::class
+
+    override fun inflate(): Inflater<FragmentIntroBinding> {
+        return FragmentIntroBinding::inflate
+    }
+
+    override fun onBind(viewModel: IntroViewModel) {
+        /*binding.introStartQuizButton.setOnClickListener {
+            showDialog()
+        }*/
+        authenticateUser(viewModel)
+    }
+
+    private fun authenticateUser(viewModel: IntroViewModel) {
+        binding.introStartQuizButton.setOnClickListener {
+            val currentUser = binding.inputNameEditText.text.toString()
+            if (binding.inputNameEditText.text.toString().isNotBlank()) {
+                viewModel.authenticateUser(UserUIModel(userName = currentUser))
+            } else {
+                requireContext().showToast(getString(R.string.insert_username_text))
+            }
+            collectStatus(viewModel)
+        }
+    }
+
+    private fun collectStatus(viewModel: IntroViewModel) {
+        collectInLifecycleScope(viewModel.errorFlow) {
+            binding.inputNameEditText.error = getString(R.string.invalid_username_text)
+        }
+    }
+
+    /* private fun showDialog() {
+         val customDialogView = CustomDialogView(requireContext())
+         customDialogView.showCongratsState()
+         customDialogView.setNeutralButtonClickListener {
+             // navigateTo(R.id.action_introFragment_to_homeFragment)
+         }
+         customDialogView.showDialog()
+     }*/
+}

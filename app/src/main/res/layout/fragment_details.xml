@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.fragment_details.ui.DetailsFragment">
+    tools:context=".presentation.ui_details.ui.DetailsFragment">
 
-    <com.space.quiz.presentation.views.CustomTitleView
+    <com.space.quiz.presentation.views.HeaderView
         android:id="@+id/customTitleView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
