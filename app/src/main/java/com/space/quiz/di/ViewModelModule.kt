@@ -11,11 +11,13 @@ val viewModelModule = module {
     viewModel {
         IntroViewModel(
             get(),
+            get(),
+            get(),
             get()
         )
     }
     viewModel {
-        HomeViewModel()
+        HomeViewModel(get(),get())
     }
     viewModel {
         DetailsViewModel()

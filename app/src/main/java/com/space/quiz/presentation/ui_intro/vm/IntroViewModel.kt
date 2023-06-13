@@ -2,6 +2,8 @@ package com.space.quiz.presentation.ui_intro.vm
 
 import com.space.quiz.domain.model.UserDomainModel
 import com.space.quiz.domain.usecase.base.BaseUseCase
+import com.space.quiz.domain.usecase.datastore.read.ReadDatastoreUseCase
+import com.space.quiz.domain.usecase.datastore.save.SaveDatastoreUseCase
 import com.space.quiz.presentation.base.BaseViewModel
 import com.space.quiz.presentation.model.UserUIModel
 import com.space.quiz.presentation.model.mapper.UserUIDomainMapper
@@ -13,6 +15,8 @@ import kotlinx.coroutines.flow.StateFlow
 
 class IntroViewModel(
     private val saveUserUseCase: BaseUseCase<UserDomainModel, Resource>,
+    private val readDataStoreUseCase: ReadDatastoreUseCase,
+    private val saveDataStoreUseCase: SaveDatastoreUseCase,
     private val userUIToDomain: UserUIDomainMapper
 ) : BaseViewModel() {
     private val _errorFlow = MutableStateFlow(0)
@@ -22,7 +26,9 @@ class IntroViewModel(
         viewModelScope {
             when (val status = saveUserUseCase.invoke(userUIToDomain(user))) {
                 is Resource.Success -> {
-                    navigate(IntroFragmentDirections.actionIntroFragmentToHomeFragment())
+                    val domainUser = userUIToDomain(user)
+                    saveDataStoreUseCase.save(domainUser.userName)
+                    navigateTo()
                 }
                 is Resource.Error -> {
                     _errorFlow.value = (status.errorMessage)
@@ -30,4 +36,22 @@ class IntroViewModel(
             }
         }
     }
+
+    fun getCurrentUserSession() {
+        viewModelScope {
+            val sessionResult = readDataStoreUseCase.invoke()
+            if (sessionResult.isSuccess) {
+                val session = sessionResult.getOrNull()
+                if (!session.isNullOrEmpty()) {
+                    navigateTo()
+                }
+            }
+        }
+    }
+
+    private fun navigateTo() {
+        navigate(IntroFragmentDirections.actionIntroFragmentToHomeFragment())
+    }
+
+
 }

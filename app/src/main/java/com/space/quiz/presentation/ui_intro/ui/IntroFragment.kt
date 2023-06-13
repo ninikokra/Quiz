@@ -4,7 +4,6 @@ import com.space.quiz.R
 import com.space.quiz.databinding.FragmentIntroBinding
 import com.space.quiz.presentation.base.BaseFragment
 import com.space.quiz.presentation.base.Inflater
-import com.space.quiz.presentation.views.dialog.CustomDialogView
 import com.space.quiz.presentation.ui_intro.vm.IntroViewModel
 import com.space.quiz.presentation.model.UserUIModel
 import com.space.quiz.utils.collectInLifecycleScope
@@ -25,6 +24,11 @@ class IntroFragment : BaseFragment<FragmentIntroBinding, IntroViewModel>() {
             showDialog()
         }*/
         authenticateUser(viewModel)
+        observeSessionAndNavigate(viewModel)
+    }
+
+    private fun observeSessionAndNavigate(viewModel: IntroViewModel) {
+        viewModel.getCurrentUserSession()
     }
 
     private fun authenticateUser(viewModel: IntroViewModel) {

@@ -13,7 +13,8 @@ class QuizApp : Application() {
             androidLogger()
             androidContext(this@QuizApp)
             modules(
-                dbModule, repositoryModule,useCaseModule,viewModelModule, mapperModule
+                dbModule, repositoryModule,useCaseModule,viewModelModule, mapperModule,
+                userDataStore
             )
         }
     }

@@ -1,11 +1,15 @@
 package com.space.quiz.presentation.ui_home.ui
 
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.lifecycle.lifecycleScope
 import com.space.quiz.R
 import com.space.quiz.databinding.FragmentHomeBinding
 import com.space.quiz.presentation.base.BaseFragment
 import com.space.quiz.presentation.base.Inflater
 import com.space.quiz.presentation.views.dialog.CustomDialogView
 import com.space.quiz.presentation.ui_home.vm.HomeViewModel
+import com.space.quiz.utils.observe
+import kotlinx.coroutines.launch
 import kotlin.reflect.KClass
 
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
@@ -19,11 +23,29 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
     override fun onBind(viewModel: HomeViewModel) {
         binding.logOutButton.setOnClickListener {
-            showDialog()
+            showDialog(viewModel)
         }
-        toDetailsFragment()
-        toQuestionsFragment()
+        observeUsername(viewModel)
+        /* toDetailsFragment()
+         toQuestionsFragment()*/
+    }
 
+    private fun observeUsername(viewModel: HomeViewModel) {
+        viewModel.username.observe(viewLifecycleOwner) { username ->
+            binding.helloUserTextView.text = getString(R.string.hello_user_text, username)
+        }
+        viewModel.fetchUsername()
+    }
+
+    private fun showDialog(viewModel: HomeViewModel) {
+        val customDialogView = CustomDialogView(requireContext())
+        customDialogView.showExitState()
+
+        customDialogView.setPositiveButtonClickListener {
+            viewModel.logout()
+        }
+        customDialogView.setNegativeButtonClickListener {}
+        customDialogView.showDialog()
     }
 
     private fun toDetailsFragment() {
@@ -36,16 +58,5 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         binding.chooseSubjectTextView.setOnClickListener {
             //navigateTo(R.id.action_homeFragment_to_testFragment)
         }
-    }
-
-    private fun showDialog() {
-        val customDialogView = CustomDialogView(requireContext())
-        customDialogView.showExitState()
-
-        customDialogView.setPositiveButtonClickListener {
-            //navigateTo(R.id.action_homeFragment_to_introFragment)
-        }
-        customDialogView.setNegativeButtonClickListener {}
-        customDialogView.showDialog()
     }
 }

@@ -31,3 +31,10 @@ fun Fragment.lifecycleScope(block: suspend CoroutineScope.() -> Unit) {
         block()
     }
 }
+fun <T> Flow<T>.observe(owner: LifecycleOwner, action: (T) -> Unit) {
+    owner.lifecycleScope.launch {
+        collect {
+            action(it)
+        }
+    }
+}
