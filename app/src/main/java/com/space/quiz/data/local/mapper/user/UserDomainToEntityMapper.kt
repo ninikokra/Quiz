@@ -1,13 +1,13 @@
-package com.space.quiz.data.local.mapper
+package com.space.quiz.data.local.mapper.user
 
 import com.space.quiz.data.local.entity.UserEntity
 import com.space.quiz.domain.model.UserDomainModel
 import com.space.quiz.utils.UIMapper
 
-class UserEntityToDomainMapper : UIMapper<UserEntity,UserDomainModel>{
-    override fun invoke(model: UserEntity): UserDomainModel =
+class UserDomainToEntityMapper :UIMapper<UserDomainModel,UserEntity>{
+    override fun invoke(model: UserDomainModel): UserEntity =
         with(model){
-            UserDomainModel(
+            UserEntity(
                 id = id,
                 userName = userName
             )

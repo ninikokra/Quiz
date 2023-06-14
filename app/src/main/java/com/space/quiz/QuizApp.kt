@@ -14,7 +14,7 @@ class QuizApp : Application() {
             androidContext(this@QuizApp)
             modules(
                 dbModule, repositoryModule,useCaseModule,viewModelModule, mapperModule,
-                userDataStore
+                userDataStore, quizModule
             )
         }
     }

@@ -12,7 +12,7 @@
         android:layout_marginHorizontal="@dimen/dimen_16dp"
         android:layout_marginTop="@dimen/dimen_20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.88"
+        app:layout_constraintHeight_percent="0.85"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:rectangleBackgroundColor="@color/neutral_04_light_grey" />
@@ -44,9 +44,9 @@
 
     <ImageView
         android:id="@+id/subjectIconImageView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dimen_30dp"
+        android:layout_width="@dimen/dimen_64dp"
+        android:layout_height="@dimen/dimen_64dp"
+        android:layout_marginStart="@dimen/dimen_25dp"
         android:src="@drawable/geography"
         app:layout_constraintBottom_toBottomOf="@+id/itemsRectangle"
         app:layout_constraintStart_toStartOf="@+id/itemsRectangle"
@@ -70,6 +70,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dimen_18dp"
+        android:layout_marginTop="@dimen/dimen_5dp"
         android:layout_marginBottom="@dimen/dimen_18dp"
         app:layout_constraintBottom_toBottomOf="@+id/itemsRectangle"
         app:layout_constraintStart_toEndOf="@+id/subjectIconImageView"

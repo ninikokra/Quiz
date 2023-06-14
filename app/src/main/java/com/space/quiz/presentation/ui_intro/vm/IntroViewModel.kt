@@ -6,7 +6,7 @@ import com.space.quiz.domain.usecase.datastore.read.ReadDatastoreUseCase
 import com.space.quiz.domain.usecase.datastore.save.SaveDatastoreUseCase
 import com.space.quiz.presentation.base.BaseViewModel
 import com.space.quiz.presentation.model.UserUIModel
-import com.space.quiz.presentation.model.mapper.UserUIDomainMapper
+import com.space.quiz.presentation.model.mapper.user.UserUIDomainMapper
 import com.space.quiz.presentation.ui_intro.ui.IntroFragmentDirections
 import com.space.quiz.utils.Resource
 import com.space.quiz.utils.viewModelScope

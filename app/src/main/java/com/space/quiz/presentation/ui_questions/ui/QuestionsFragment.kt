@@ -1,5 +1,6 @@
 package com.space.quiz.presentation.ui_questions.ui
 
+import androidx.navigation.fragment.findNavController
 import com.space.quiz.R
 import com.space.quiz.databinding.FragmentTestsBinding
 import com.space.quiz.presentation.base.BaseFragment
@@ -26,6 +27,7 @@ class QuestionsFragment : BaseFragment<FragmentTestsBinding, QuestionsViewModel>
         binding.root.addView(titleView)
         titleView.subjectTitleToolBar()
         titleView.setCancelButton {
+            findNavController().navigate(R.id.action_testFragment_to_homeFragment)
             //navigateTo(R.id.action_testFragment_to_homeFragment)
         }
     }
