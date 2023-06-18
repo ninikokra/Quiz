@@ -4,7 +4,6 @@ import com.space.quiz.data.local.dao.UserDao
 import com.space.quiz.data.local.datastore.UserDataStore
 import com.space.quiz.data.local.mapper.UserDomainToEntityMapper
 import com.space.quiz.data.local.mapper.UserEntityToDomainMapper
-import com.space.quiz.di.userDataStore
 import com.space.quiz.domain.model.UserDomainModel
 import com.space.quiz.domain.repository.UserRepository
 import kotlinx.coroutines.flow.firstOrNull
