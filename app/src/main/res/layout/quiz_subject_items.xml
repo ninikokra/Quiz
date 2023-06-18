@@ -12,7 +12,7 @@
         android:layout_marginHorizontal="@dimen/dimen_16dp"
         android:layout_marginTop="@dimen/dimen_20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.85"
+        app:layout_constraintHeight_percent="0.87"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:rectangleBackgroundColor="@color/neutral_04_light_grey" />
@@ -67,13 +67,13 @@
     <TextView
         android:id="@+id/subjectDescriptionTextView"
         style="@style/smallMyriadGeo_lGrey_normal"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dimen_18dp"
-        android:layout_marginTop="@dimen/dimen_5dp"
-        android:layout_marginBottom="@dimen/dimen_18dp"
-        app:layout_constraintBottom_toBottomOf="@+id/itemsRectangle"
+        android:layout_marginTop="@dimen/dimen_8dp"
+        android:layout_marginHorizontal="@dimen/dimen_18dp"
+        app:layout_constraintBottom_toBottomOf="@+id/subjectIconImageView"
+        app:layout_constraintEnd_toStartOf="@+id/quizStartImageViewButton"
         app:layout_constraintStart_toEndOf="@+id/subjectIconImageView"
-        app:layout_constraintTop_toTopOf="@+id/subjectTitleTextView"
+        app:layout_constraintTop_toBottomOf="@+id/subjectTitleTextView"
         tools:text="აღწერა" />
 </androidx.constraintlayout.widget.ConstraintLayout>

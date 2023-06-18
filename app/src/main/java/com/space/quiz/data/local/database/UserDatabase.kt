@@ -7,7 +7,7 @@ import com.space.quiz.data.local.entity.UserEntity
 
 @Database(
     entities = [UserEntity::class],
-    version = 3,
+    version = 1,
 )
 abstract class UserDatabase : RoomDatabase() {
 

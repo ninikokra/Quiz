@@ -18,7 +18,7 @@ val viewModelModule = module {
         )
     }
     viewModel {
-        HomeViewModel(get(),get(),get(), SubjectDomainUiMapper())
+        HomeViewModel(get(),get(),get(), get())
     }
     viewModel {
         DetailsViewModel()

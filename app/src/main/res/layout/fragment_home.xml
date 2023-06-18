@@ -30,7 +30,7 @@
 
     <com.space.quiz.presentation.views.RectangleView
         android:id="@+id/gpaRectangle"
-        android:layout_width="@dimen/dimen_106dp"
+        android:layout_width="@dimen/dimen_125dp"
         android:layout_height="@dimen/dimen_35dp"
         android:layout_marginHorizontal="@dimen/dimen_16dp"
         app:layout_constraintBottom_toBottomOf="@+id/detailsRectangle"

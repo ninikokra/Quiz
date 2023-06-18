@@ -1,22 +1,20 @@
 package com.space.quiz.presentation.ui_home.ui
 
-import HomeAdapter
-import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.space.quiz.R
 import com.space.quiz.databinding.FragmentHomeBinding
 import com.space.quiz.presentation.base.BaseFragment
 import com.space.quiz.presentation.base.Inflater
-import com.space.quiz.presentation.model.mapper.SubjectUIModel
+import com.space.quiz.presentation.ui_home.adapter.HomeAdapter
 import com.space.quiz.presentation.views.dialog.CustomDialogView
 import com.space.quiz.presentation.ui_home.vm.HomeViewModel
+import com.space.quiz.utils.network.ResponseHandler
 import com.space.quiz.utils.isVisible
 import com.space.quiz.utils.lifecycleScope
 import com.space.quiz.utils.observe
 import kotlin.reflect.KClass
 
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
-
     override val viewModelClass: KClass<HomeViewModel>
         get() = HomeViewModel::class
 
@@ -34,17 +32,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         }
         observeUsername(viewModel)
         initRecycler(viewModel)
-        observer(viewModel)
-        setItemCLickRecyclerView(viewModel)
+        setSubjectItemClickListener(viewModel)
+        fetchSubjects(viewModel)
     }
 
-
-    private fun setItemCLickRecyclerView(viewModel: HomeViewModel) {
-        homeAdapter.setOnItemClickListener(object : HomeAdapter.OnItemClickListener {
-            override fun onItemClick(item: SubjectUIModel) {
-                viewModel.navigateToTests()
-            }
-        })
+    private fun setSubjectItemClickListener(viewModel: HomeViewModel) {
+        homeAdapter.setOnItemClickListener {
+            viewModel.navigateToTests()
+        }
     }
 
     private fun initRecycler(viewModel: HomeViewModel) {
@@ -53,20 +48,24 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             layoutManager = LinearLayoutManager(requireContext())
         }
         lifecycleScope {
-            viewModel.getQuizQuestions()
-
+            viewModel.fetchSubjectList()
         }
     }
 
-    private fun observer(viewModel: HomeViewModel) {
-        lifecycleScope {
-            viewModel.success.collect {
-                homeAdapter.submitList(it)
-            }
-        }
-        lifecycleScope {
-            viewModel.isLoading.collect { isLoading ->
-                binding.homeProgressBar.isVisible(isLoading)
+    private fun fetchSubjects(viewModel: HomeViewModel) {
+        viewModel.subjectList.observe(viewLifecycleOwner) { response ->
+            when (response) {
+                is ResponseHandler.Success -> {
+                    val subjectList = response.response
+                    homeAdapter.submitList(subjectList)
+                    binding.homeProgressBar.isVisible(false)
+                }
+                is ResponseHandler.Error -> {
+                    binding.homeProgressBar.isVisible(true)
+                }
+                is ResponseHandler.Loading -> {
+                    binding.homeProgressBar.isVisible(true)
+                }
             }
         }
     }
@@ -87,17 +86,5 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         }
         customDialogView.setNegativeButtonClickListener {}
         customDialogView.showDialog()
-    }
-
-    private fun toDetailsFragment() {
-        binding.detailsTextViewButton.setOnClickListener {
-            //navigateTo(R.id.action_homeFragment_to_detailsFragment)
-        }
-    }
-
-    private fun toQuestionsFragment() {
-        binding.chooseSubjectTextView.setOnClickListener {
-            //navigateTo(R.id.action_homeFragment_to_testFragment)
-        }
     }
 }
