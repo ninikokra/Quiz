@@ -1,7 +1,5 @@
 package com.space.quiz.presentation.ui_home.ui
 
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.lifecycle.lifecycleScope
 import com.space.quiz.R
 import com.space.quiz.databinding.FragmentHomeBinding
 import com.space.quiz.presentation.base.BaseFragment
@@ -9,7 +7,6 @@ import com.space.quiz.presentation.base.Inflater
 import com.space.quiz.presentation.views.dialog.CustomDialogView
 import com.space.quiz.presentation.ui_home.vm.HomeViewModel
 import com.space.quiz.utils.observe
-import kotlinx.coroutines.launch
 import kotlin.reflect.KClass
 
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
@@ -26,8 +23,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             showDialog(viewModel)
         }
         observeUsername(viewModel)
-        /* toDetailsFragment()
-         toQuestionsFragment()*/
     }
 
     private fun observeUsername(viewModel: HomeViewModel) {
@@ -38,25 +33,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     }
 
     private fun showDialog(viewModel: HomeViewModel) {
-        val customDialogView = CustomDialogView(requireContext())
-        customDialogView.showExitState()
-
-        customDialogView.setPositiveButtonClickListener {
-            viewModel.logout()
-        }
-        customDialogView.setNegativeButtonClickListener {}
-        customDialogView.showDialog()
-    }
-
-    private fun toDetailsFragment() {
-        binding.detailsTextViewButton.setOnClickListener {
-            //navigateTo(R.id.action_homeFragment_to_detailsFragment)
-        }
-    }
-
-    private fun toQuestionsFragment() {
-        binding.chooseSubjectTextView.setOnClickListener {
-            //navigateTo(R.id.action_homeFragment_to_testFragment)
+        CustomDialogView(requireContext()).apply {
+            setPositiveButtonClickListener {
+                viewModel.logout()
+            }
+            showDialog()
         }
     }
 }

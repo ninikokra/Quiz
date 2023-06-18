@@ -1,6 +1,5 @@
 package com.space.quiz.presentation.ui_questions.ui
 
-import com.space.quiz.R
 import com.space.quiz.databinding.FragmentTestsBinding
 import com.space.quiz.presentation.base.BaseFragment
 import com.space.quiz.presentation.base.Inflater

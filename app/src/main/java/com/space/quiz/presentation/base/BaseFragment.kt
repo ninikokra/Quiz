@@ -40,10 +40,6 @@ abstract class BaseFragment<VB : ViewBinding,VM: BaseViewModel> : Fragment() {
         observeNavigation()
     }
 
-  /*  fun navigateTo(destinationId: Int) {
-        val navController = findNavController()
-        navController.navigate(destinationId)
-    }*/
     private fun observeNavigation() {
         lifecycleScope {
             viewModel.navigation.collect { navigationCommand ->

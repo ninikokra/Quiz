@@ -17,16 +17,16 @@ class IntroViewModel(
     private val saveUserUseCase: BaseUseCase<UserDomainModel, Resource>,
     private val readDataStoreUseCase: ReadDatastoreUseCase,
     private val saveDataStoreUseCase: SaveDatastoreUseCase,
-    private val userUIToDomain: UserUIDomainMapper
+    private val userUIToDomainMapper: UserUIDomainMapper
 ) : BaseViewModel() {
     private val _errorFlow = MutableStateFlow(0)
     val errorFlow: StateFlow<Int> = _errorFlow
 
     fun authenticateUser(user: UserUIModel) {
         viewModelScope {
-            when (val status = saveUserUseCase.invoke(userUIToDomain(user))) {
+            when (val status = saveUserUseCase.invoke(userUIToDomainMapper(user))) {
                 is Resource.Success -> {
-                    val domainUser = userUIToDomain(user)
+                    val domainUser = userUIToDomainMapper(user)
                     saveDataStoreUseCase.save(domainUser.userName)
                     navigateTo()
                 }

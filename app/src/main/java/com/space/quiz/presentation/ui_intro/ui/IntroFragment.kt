@@ -20,9 +20,6 @@ class IntroFragment : BaseFragment<FragmentIntroBinding, IntroViewModel>() {
     }
 
     override fun onBind(viewModel: IntroViewModel) {
-        /*binding.introStartQuizButton.setOnClickListener {
-            showDialog()
-        }*/
         authenticateUser(viewModel)
         observeSessionAndNavigate(viewModel)
     }
