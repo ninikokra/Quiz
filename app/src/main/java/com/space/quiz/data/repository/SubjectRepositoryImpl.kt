@@ -21,7 +21,6 @@ class SubjectRepositoryImpl
             emit(ResponseHandler.Loading())
             try {
                 val response = quizApiService.get()
-                Log.d("NINI", "API response???: $response")
                 if (response.isSuccessful && response.body() != null) {
                     val subjectItemDto = response.body()!!
                     val subjectDomainList = subjectItemDto.map {
@@ -32,7 +31,6 @@ class SubjectRepositoryImpl
                     emit(ResponseHandler.Error(R.string.service_error_text))
                 }
             } catch (e: Exception) {
-                Log.e("NINI", "API error??: ${e.message}", e)
                 emit(ResponseHandler.Error(R.string.service_error_text))
             }
         }

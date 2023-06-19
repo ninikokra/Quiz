@@ -28,7 +28,6 @@ class QuestionsFragment : BaseFragment<FragmentTestsBinding, QuestionsViewModel>
         titleView.subjectTitleToolBar()
         titleView.setCancelButton {
             findNavController().navigate(R.id.action_testFragment_to_homeFragment)
-            //navigateTo(R.id.action_testFragment_to_homeFragment)
         }
     }
 }

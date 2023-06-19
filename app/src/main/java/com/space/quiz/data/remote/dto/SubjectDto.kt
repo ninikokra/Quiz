@@ -1,4 +1,5 @@
 package com.space.quiz.data.remote.dto
+
 data class SubjectDto(
     val id: Int,
     val questions: List<QuestionDto>,

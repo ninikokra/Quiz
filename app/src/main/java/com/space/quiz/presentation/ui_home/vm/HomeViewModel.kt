@@ -38,15 +38,12 @@ class HomeViewModel(
                         val subjectList = response.response.map { subjectDomainModel ->
                             subjectDomainUiMapper(subjectDomainModel)
                         }
-                        Log.d("VM_LOG", "success in VM: ")
                         ResponseHandler.Success(subjectList)
                     }
                     is ResponseHandler.Error -> {
-                        Log.d("VM_LOG", "error in VM: ")
                         ResponseHandler.Error(R.string.service_error_text)
                     }
                     is ResponseHandler.Loading -> {
-                        Log.d("VM_LOG", "loading in VM: ")
                         ResponseHandler.Loading()
                     }
                 }

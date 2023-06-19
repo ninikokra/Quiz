@@ -12,6 +12,7 @@ import com.space.quiz.utils.network.ResponseHandler
 import com.space.quiz.utils.isVisible
 import com.space.quiz.utils.lifecycleScope
 import com.space.quiz.utils.observe
+import com.space.quiz.utils.showToast
 import kotlin.reflect.KClass
 
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
@@ -61,7 +62,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                     binding.homeProgressBar.isVisible(false)
                 }
                 is ResponseHandler.Error -> {
-                    binding.homeProgressBar.isVisible(true)
+                    requireContext().showToast(getString(R.string.service_error_text))
                 }
                 is ResponseHandler.Loading -> {
                     binding.homeProgressBar.isVisible(true)
