@@ -78,14 +78,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         viewModel.fetchUsername()
     }
 
-    private fun showDialog(viewModel: HomeViewModel) {
-        val customDialogView = CustomDialogView(requireContext())
-        customDialogView.showExitState()
-
-        customDialogView.setPositiveButtonClickListener {
-            viewModel.logout()
+   private fun showDialog(viewModel: HomeViewModel) {
+        CustomDialogView(requireContext()).apply {
+            showExitState()
+            setPositiveButtonClickListener {
+                viewModel.logout()
+            }
+            showDialog()
         }
-        customDialogView.setNegativeButtonClickListener {}
-        customDialogView.showDialog()
     }
 }

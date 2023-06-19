@@ -6,8 +6,6 @@ import com.space.quiz.utils.navigation.NavigationCommand
 import com.space.quiz.utils.viewModelScope
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
-
-
 abstract class BaseViewModel : ViewModel() {
 
     private val _navigation = MutableSharedFlow<NavigationCommand>()

@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import com.space.quiz.utils.lifecycleScope
-import com.space.quiz.utils.navigation.NavigationCommand
+import com.space.quiz.utils.navigaion.NavigationCommand
 import org.koin.androidx.viewmodel.ext.android.viewModelForClass
 import kotlin.reflect.KClass
 //Todo binding extension უნდა გავაკეთო ან აეს გავიტანო
@@ -40,10 +40,6 @@ abstract class BaseFragment<VB : ViewBinding,VM: BaseViewModel> : Fragment() {
         observeNavigation()
     }
 
-  /*  fun navigateTo(destinationId: Int) {
-        val navController = findNavController()
-        navController.navigate(destinationId)
-    }*/
     private fun observeNavigation() {
         lifecycleScope {
             viewModel.navigation.collect { navigationCommand ->
