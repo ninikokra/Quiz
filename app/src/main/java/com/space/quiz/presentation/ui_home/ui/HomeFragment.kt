@@ -10,7 +10,6 @@ import com.space.quiz.utils.observe
 import kotlin.reflect.KClass
 
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
-
     override val viewModelClass: KClass<HomeViewModel>
         get() = HomeViewModel::class
 
@@ -18,12 +17,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         return FragmentHomeBinding::inflate
     }
 
+
     override fun onBind(viewModel: HomeViewModel) {
         binding.logOutButton.setOnClickListener {
             showDialog(viewModel)
         }
         observeUsername(viewModel)
     }
+
 
     private fun observeUsername(viewModel: HomeViewModel) {
         viewModel.username.observe(viewLifecycleOwner) { username ->
@@ -34,6 +35,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
     private fun showDialog(viewModel: HomeViewModel) {
         CustomDialogView(requireContext()).apply {
+            showExitState()
             setPositiveButtonClickListener {
                 viewModel.logout()
             }
