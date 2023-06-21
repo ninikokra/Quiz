@@ -29,14 +29,16 @@ class IntroFragment : BaseFragment<FragmentIntroBinding, IntroViewModel>() {
     }
 
     private fun authenticateUser(viewModel: IntroViewModel) {
-        binding.introStartQuizButton.setOnClickListener {
-            val currentUser = binding.inputNameEditText.text.toString()
-            if (binding.inputNameEditText.text.toString().isNotBlank()) {
-                viewModel.authenticateUser(UserUIModel(userName = currentUser))
-            } else {
-                requireContext().showToast(getString(R.string.insert_username_text))
+        with(binding) {
+            introStartQuizButton.setOnClickListener {
+                val currentUser = inputNameEditText.text.toString()
+                if (inputNameEditText.text.toString().isNotBlank()) {
+                    viewModel.authenticateUser(UserUIModel(userName = currentUser))
+                } else {
+                    requireContext().showToast(getString(R.string.insert_username_text))
+                }
+                collectStatus(viewModel)
             }
-            collectStatus(viewModel)
         }
     }
 
@@ -45,13 +47,4 @@ class IntroFragment : BaseFragment<FragmentIntroBinding, IntroViewModel>() {
             binding.inputNameEditText.error = getString(R.string.invalid_username_text)
         }
     }
-
-    /* private fun showDialog() {
-         val customDialogView = CustomDialogView(requireContext())
-         customDialogView.showCongratsState()
-         customDialogView.setNeutralButtonClickListener {
-             // navigateTo(R.id.action_introFragment_to_homeFragment)
-         }
-         customDialogView.showDialog()
-     }*/
 }

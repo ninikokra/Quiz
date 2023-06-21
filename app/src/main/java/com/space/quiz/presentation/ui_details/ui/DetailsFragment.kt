@@ -22,11 +22,12 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding, DetailsViewModel>()
     }
 
     private fun showTitleVIew() {
-        val titleView = HeaderView(requireContext())
-        binding.root.addView(titleView)
-        titleView.collectedPointsToolBar()
-        titleView.setBackButton {
-            findNavController().popBackStack()
+        HeaderView(requireContext()).apply {
+            binding.root.addView(this)
+            collectedPointsToolBar()
+            setBackButton {
+                findNavController().popBackStack()
+            }
         }
     }
 }

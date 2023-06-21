@@ -8,7 +8,6 @@ import androidx.core.content.ContextCompat
 import com.space.quiz.R
 import com.space.quiz.databinding.CustomTitleViewBinding
 
-
 class HeaderView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,

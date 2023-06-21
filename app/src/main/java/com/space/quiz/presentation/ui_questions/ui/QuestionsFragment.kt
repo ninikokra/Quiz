@@ -23,11 +23,12 @@ class QuestionsFragment : BaseFragment<FragmentTestsBinding, QuestionsViewModel>
     }
 
     private fun showTitleVIew() {
-        val titleView = HeaderView(requireContext())
-        binding.root.addView(titleView)
-        titleView.subjectTitleToolBar()
-        titleView.setCancelButton {
-            findNavController().navigate(R.id.action_testFragment_to_homeFragment)
+        HeaderView(requireContext()).apply {
+            binding.root.addView(this)
+            subjectTitleToolBar()
+            setCancelButton {
+                findNavController().navigate(R.id.action_testFragment_to_homeFragment)
+            }
         }
     }
 }

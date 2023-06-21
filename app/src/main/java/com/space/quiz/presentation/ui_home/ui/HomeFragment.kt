@@ -71,6 +71,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         }
     }
 
+
     private fun observeUsername(viewModel: HomeViewModel) {
         viewModel.username.observe(viewLifecycleOwner) { username ->
             binding.helloUserTextView.text = getString(R.string.hello_user_text, username)
