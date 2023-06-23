@@ -1,10 +1,8 @@
 package com.space.quiz.presentation.ui_home.vm
 
-import android.util.Log
-import com.space.quiz.R
-import com.space.quiz.domain.usecase.datastore.clear.ClearUserUseCase
+import com.space.quiz.domain.usecase.datastore.clear.ClearDatastoreUseCase
 import com.space.quiz.domain.usecase.datastore.read.ReadDatastoreUseCase
-import com.space.quiz.domain.usecase.subject.GetSubjectUseCase
+import com.space.quiz.domain.usecase.subject.GetSubjectUseCaseImpl
 import com.space.quiz.presentation.base.BaseViewModel
 import com.space.quiz.presentation.model.SubjectUIModel
 import com.space.quiz.presentation.model.mapper.subject.SubjectDomainUiMapper
@@ -17,37 +15,48 @@ import kotlinx.coroutines.flow.*
 
 class HomeViewModel(
     private val readDatastoreUseCase: ReadDatastoreUseCase,
-    private val clearDatastoreUseCase: ClearUserUseCase,
-    private val getSubjectUseCase: GetSubjectUseCase,
+    private val clearDatastoreUseCase: ClearDatastoreUseCase,
+    private val getSubjectUseCase: GetSubjectUseCaseImpl,
     private val subjectDomainUiMapper: SubjectDomainUiMapper
 ) : BaseViewModel() {
-
     private val _username = MutableStateFlow<String?>(null)
     val username: StateFlow<String?> = _username
 
-    private val _subjectList =
-        MutableStateFlow<ResponseHandler<List<SubjectUIModel>>>(ResponseHandler.Loading())
-    val subjectList = _subjectList.asStateFlow()
+    private val _subjects = MutableStateFlow<List<SubjectUIModel>>(emptyList())
+    val subjects: StateFlow<List<SubjectUIModel>> = _subjects
 
-    fun fetchSubjectList() {
+    private val _isLoading = MutableStateFlow<Boolean>(false)
+    val isLoading: StateFlow<Boolean> = _isLoading
+
+    private val _error = MutableStateFlow<String?>(null)
+    val error: StateFlow<String?> = _error
+
+
+    fun fetchSubjects() {
         viewModelScope {
-            _subjectList.value = ResponseHandler.Loading()
-            getSubjectUseCase.execute().collect { response ->
-                _subjectList.value = when (response) {
-                    is ResponseHandler.Success -> {
-                        val subjectList = response.response.map { subjectDomainModel ->
-                            subjectDomainUiMapper(subjectDomainModel)
+            _isLoading.value = true
+            getSubjectUseCase.invoke()
+                .onStart { _isLoading.value = true }
+                .onCompletion { _isLoading.value = false }
+                .catch { exception ->
+                    _isLoading.value = false
+                    _error.value = exception.message
+                }
+                .collect { responseHandler ->
+                    when (responseHandler) {
+                        is ResponseHandler.Success -> {
+                            val quizItems =
+                                responseHandler.response.map { subjectDomainUiMapper(it) }
+                            _subjects.value = quizItems
                         }
-                        ResponseHandler.Success(subjectList)
-                    }
-                    is ResponseHandler.Error -> {
-                        ResponseHandler.Error(R.string.service_error_text)
-                    }
-                    is ResponseHandler.Loading -> {
-                        ResponseHandler.Loading()
+                        is ResponseHandler.Error -> {
+                            _error.value = responseHandler.errorResponseString
+                        }
+                        is ResponseHandler.Loading -> {
+                            _isLoading.value = responseHandler.isLoading
+                        }
                     }
                 }
-            }
         }
     }
 
@@ -68,9 +77,10 @@ class HomeViewModel(
         }
     }
 
-    fun navigateToTests() {
-        navigate(HomeFragmentDirections.actionHomeFragmentToTestFragment())
+    fun navigateToQuestions(subject: String) {
+        navigate(HomeFragmentDirections.actionHomeFragmentToQuestionsFragment(subject))
     }
+
 
     private fun navigateToIntro() {
         navigate(HomeFragmentDirections.actionHomeFragmentToIntroFragment())

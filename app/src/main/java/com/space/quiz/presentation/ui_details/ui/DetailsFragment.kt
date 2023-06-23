@@ -17,7 +17,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding, DetailsViewModel>()
         return FragmentDetailsBinding::inflate
     }
 
-    override fun onBind(viewModel: DetailsViewModel) {
+    override fun onBind() {
         showTitleVIew()
     }
 

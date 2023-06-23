@@ -1,24 +1,13 @@
 package com.space.quiz.domain.usecase.datastore.save
 
 import com.space.quiz.domain.repository.UserRepository
+import com.space.quiz.domain.usecase.base.BaseUseCase
 
-
-interface SaveDatastoreUseCase {
-    suspend fun save(username: String)
-}
-class SaveDatastoreUseCaseImpl(private val userRepository: UserRepository) :
-    SaveDatastoreUseCase {
-    override suspend fun save(username: String) {
-        userRepository.save(username)
-    }
-}
-
-//TODO working about baseUseCase..
-/*class SaveDatastoreUseCase(private val userRepository: UserRepository) :
+class SaveDatastoreUseCase(private val userRepository: UserRepository) :
     BaseUseCase<String, Unit>() {
     override suspend fun invoke(params: String?) {
         params?.let { username ->
             userRepository.save(username)
         }
     }
-}*/
+}

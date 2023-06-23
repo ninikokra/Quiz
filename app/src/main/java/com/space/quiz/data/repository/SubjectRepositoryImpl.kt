@@ -2,8 +2,11 @@ package com.space.quiz.data.repository
 
 import android.util.Log
 import com.space.quiz.R
+import com.space.quiz.data.remote.dto.SubjectDto
 import com.space.quiz.data.remote.service.QuizApiService
+import com.space.quiz.domain.model.QuestionsDomainModel
 import com.space.quiz.domain.model.SubjectDomainModel
+import com.space.quiz.domain.model.mapper.QuestionsDtoToDomainMapper
 import com.space.quiz.domain.model.mapper.SubjectDtoDomainMapper
 import com.space.quiz.domain.repository.SubjectRepository
 import com.space.quiz.utils.network.ResponseHandler
@@ -12,9 +15,12 @@ import kotlinx.coroutines.flow.flow
 
 class SubjectRepositoryImpl
     (private val quizApiService: QuizApiService,
-     private val subjectDtoToDomain: SubjectDtoDomainMapper
+     private val subjectDtoToDomain: SubjectDtoDomainMapper,
+     private val questionsDtoToDomainMapper: QuestionsDtoToDomainMapper
 )
     : SubjectRepository {
+
+    override val subjectDataList: MutableList<SubjectDto> = mutableListOf()
 
     override suspend fun getSubject(): Flow<ResponseHandler<List<SubjectDomainModel>>> {
         return flow {
@@ -23,6 +29,8 @@ class SubjectRepositoryImpl
                 val response = quizApiService.get()
                 if (response.isSuccessful && response.body() != null) {
                     val subjectItemDto = response.body()!!
+                    subjectDataList.clear()
+                    subjectDataList.addAll(subjectItemDto)
                     val subjectDomainList = subjectItemDto.map {
                         subjectDtoToDomain(it)
                     }
@@ -36,5 +44,13 @@ class SubjectRepositoryImpl
         }
     }
 
+    override suspend fun getQuestions(subject: String): List<QuestionsDomainModel> {
+        return subjectDataList.find {
+            it.quizTitle == subject
+        }?.questions?.map {
+            questionsDtoToDomainMapper(it)
+        } ?: emptyList()
+
+    }
 }
 

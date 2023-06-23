@@ -5,18 +5,6 @@ import com.space.quiz.domain.usecase.base.BaseUseCase
 
 
 
-interface ClearUserUseCase {
-    suspend fun invoke()
-}
-
-class ClearUserUseCaseImpl(private val userRepository: UserRepository) : ClearUserUseCase {
-    override suspend fun invoke() {
-        userRepository.clear()
-    }
-}
-
-//TODO working about baseUseCase..
-/*
 class ClearDatastoreUseCase(private val userRepository: UserRepository) :
     BaseUseCase<Unit, Result<Unit>>() {
 
@@ -29,8 +17,6 @@ class ClearDatastoreUseCase(private val userRepository: UserRepository) :
         }
     }
 }
-
-*/
 
 
 

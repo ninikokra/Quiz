@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import com.space.quiz.utils.lifecycleScope
-import com.space.quiz.utils.navigaion.NavigationCommand
+import com.space.quiz.utils.navigation.NavigationCommand
 import org.koin.androidx.viewmodel.ext.android.viewModelForClass
 import kotlin.reflect.KClass
 //Todo binding extension უნდა გავაკეთო ან აეს გავიტანო
@@ -16,14 +16,14 @@ typealias Inflater<VB> = (inflater: LayoutInflater, container: ViewGroup, attach
 
 abstract class BaseFragment<VB : ViewBinding,VM: BaseViewModel> : Fragment() {
 
-    private val viewModel: VM by viewModelForClass(clazz = viewModelClass)
+    protected val viewModel: VM by viewModelForClass(clazz = viewModelClass)
     abstract val viewModelClass: KClass<VM>
 
     private var _binding: VB? = null
     protected val binding get() = _binding!!
 
     abstract fun inflate(): Inflater<VB>
-    abstract fun onBind(viewModel: VM)
+    abstract fun onBind()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,7 +36,7 @@ abstract class BaseFragment<VB : ViewBinding,VM: BaseViewModel> : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        onBind(viewModel)
+        onBind()
         observeNavigation()
     }
 

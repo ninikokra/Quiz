@@ -20,8 +20,8 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_homeFragment_to_testFragment"
-            app:destination="@id/testFragment" />
+            android:id="@+id/action_homeFragment_to_questionsFragment"
+            app:destination="@id/questionsFragment" />
         <action
             android:id="@+id/action_homeFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
@@ -30,14 +30,17 @@
             app:destination="@id/introFragment" />
     </fragment>
     <fragment
-        android:id="@+id/testFragment"
+        android:id="@+id/questionsFragment"
         android:name="com.space.quiz.presentation.ui_questions.ui.QuestionsFragment"
-        android:label="fragment_tests"
-        tools:layout="@layout/fragment_tests">
+        android:label="fragment_questions"
+        tools:layout="@layout/fragment_questions">
 
         <action
-            android:id="@+id/action_testFragment_to_homeFragment"
+            android:id="@+id/action_questionFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <argument
+            android:name="subject"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
