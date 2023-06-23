@@ -2,7 +2,7 @@ package com.space.quiz.presentation.ui_home.vm
 
 import com.space.quiz.domain.usecase.datastore.clear.ClearDatastoreUseCase
 import com.space.quiz.domain.usecase.datastore.read.ReadDatastoreUseCase
-import com.space.quiz.domain.usecase.subject.GetSubjectUseCaseImpl
+import com.space.quiz.domain.usecase.subject.GetSubjectUseCase
 import com.space.quiz.presentation.base.BaseViewModel
 import com.space.quiz.presentation.model.SubjectUIModel
 import com.space.quiz.presentation.model.mapper.subject.SubjectDomainUiMapper
@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.*
 class HomeViewModel(
     private val readDatastoreUseCase: ReadDatastoreUseCase,
     private val clearDatastoreUseCase: ClearDatastoreUseCase,
-    private val getSubjectUseCase: GetSubjectUseCaseImpl,
+    private val getSubjectUseCase: GetSubjectUseCase,
     private val subjectDomainUiMapper: SubjectDomainUiMapper
 ) : BaseViewModel() {
     private val _username = MutableStateFlow<String?>(null)

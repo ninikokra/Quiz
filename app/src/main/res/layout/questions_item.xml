@@ -15,11 +15,11 @@
         app:layout_constraintHeight_percent="0.83"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:rectangleBackgroundColor="@color/success" />
+        app:rectangleBackgroundColor="@color/neutral_04_light_grey" />
 
     <TextView
         android:id="@+id/answersTextView"
-        style="@style/mediumMyriadGeo_white_Normal"
+        style="@style/mediumMyriadGeo_darkGrey_normal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dimen_30dp"
@@ -35,6 +35,7 @@
         android:layout_marginEnd="@dimen/dimen_24dp"
         android:drawablePadding="@dimen/dimen_5dp"
         android:text="@string/point_text"
+        android:visibility="gone"
         android:textColor="@color/neutral_04_white"
         app:drawableRightCompat="@drawable/ic_star"
         app:layout_constraintBottom_toBottomOf="@+id/questionsRectangleView"

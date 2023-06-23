@@ -24,6 +24,6 @@ val viewModelModule = module {
         DetailsViewModel()
     }
     viewModel {
-        QuestionsViewModel()
+        QuestionsViewModel(get(),get())
     }
 }

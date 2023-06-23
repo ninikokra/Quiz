@@ -7,8 +7,8 @@ import com.space.quiz.utils.network.ResponseHandler
 import kotlinx.coroutines.flow.Flow
 
 
-class GetSubjectUseCaseImpl(private val quizRepository: SubjectRepository) : BaseUseCase<Unit,Flow<ResponseHandler<List<SubjectDomainModel>>>>() {
+class GetSubjectUseCase(private val subjectRepository: SubjectRepository) : BaseUseCase<Unit,Flow<ResponseHandler<List<SubjectDomainModel>>>>() {
     override suspend fun invoke(params: Unit?): Flow<ResponseHandler<List<SubjectDomainModel>>> {
-        return quizRepository.getSubject()
+        return subjectRepository.getSubject()
     }
 }
