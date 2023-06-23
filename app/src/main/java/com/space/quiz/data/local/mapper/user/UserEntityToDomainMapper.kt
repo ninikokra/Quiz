@@ -1,4 +1,4 @@
-package com.space.quiz.data.local.mapper
+package com.space.quiz.data.local.mapper.user
 
 import com.space.quiz.data.local.entity.UserEntity
 import com.space.quiz.domain.model.UserDomainModel

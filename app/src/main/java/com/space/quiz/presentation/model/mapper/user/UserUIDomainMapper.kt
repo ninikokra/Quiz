@@ -1,4 +1,4 @@
-package com.space.quiz.presentation.model.mapper
+package com.space.quiz.presentation.model.mapper.user
 
 import com.space.quiz.domain.model.UserDomainModel
 import com.space.quiz.presentation.model.UserUIModel

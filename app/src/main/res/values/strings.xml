@@ -23,4 +23,5 @@
     <string name="congrats_icon_text">🎉</string>
     <string name="invalid_username_text">მომხმარებლის სახელი არასწორია</string>
     <string name="insert_username_text">შეიყვანეთ მომხმარებლის სახელი</string>
+    <string name="service_error_text">დაფიქსირდა შეცდომა</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.space.quiz.di
 
+import com.space.quiz.presentation.model.mapper.subject.SubjectDomainUiMapper
 import com.space.quiz.presentation.ui_details.vm.DetailsViewModel
 import com.space.quiz.presentation.ui_home.vm.HomeViewModel
 import com.space.quiz.presentation.ui_intro.vm.IntroViewModel
@@ -17,7 +18,7 @@ val viewModelModule = module {
         )
     }
     viewModel {
-        HomeViewModel(get(),get())
+        HomeViewModel(get(),get(),get(), get())
     }
     viewModel {
         DetailsViewModel()

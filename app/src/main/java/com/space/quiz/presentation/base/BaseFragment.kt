@@ -11,7 +11,7 @@ import com.space.quiz.utils.lifecycleScope
 import com.space.quiz.utils.navigaion.NavigationCommand
 import org.koin.androidx.viewmodel.ext.android.viewModelForClass
 import kotlin.reflect.KClass
-
+//Todo binding extension უნდა გავაკეთო ან აეს გავიტანო
 typealias Inflater<VB> = (inflater: LayoutInflater, container: ViewGroup, attachToRoot: Boolean) -> VB
 
 abstract class BaseFragment<VB : ViewBinding,VM: BaseViewModel> : Fragment() {
