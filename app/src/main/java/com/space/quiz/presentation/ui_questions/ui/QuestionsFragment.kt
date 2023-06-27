@@ -39,7 +39,7 @@ class QuestionsFragment : BaseFragment<FragmentQuestionsBinding, QuestionsViewMo
         initRecycler()
     }
 
-    private fun fetchQuestion(subject: String){
+    private fun fetchQuestion(subject: String) {
         lifecycleScope {
             viewModel.fetchQuestions(subject)
         }

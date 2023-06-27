@@ -6,51 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.space.quiz.databinding.AnswerCustomviewBinding
 
-/*
-class AnswersAdapter :
-    RecyclerView.Adapter<AnswersAdapter.AnswersViewHolder>() {
-
-    private lateinit var correctAnswer: String
-
-    private var answers: List<String> = emptyList()
-
-    fun submitCorrectAnswer(correctAnswer: String) {
-        this.correctAnswer = correctAnswer
-    }
-
-    fun submitList(answersList: List<String>) {
-        answers = answersList
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnswersViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        val binding = AnswerCustomviewBinding.inflate(inflater, parent, false)
-        return AnswersViewHolder(binding)
-    }
-
-    override fun onBindViewHolder(holder: AnswersViewHolder, position: Int) {
-        val answer = answers[position]
-        holder.bind(answer, correctAnswer)
-    }
-
-    override fun getItemCount(): Int {
-        return answers.size
-    }
-
-    class AnswersViewHolder(private val binding: AnswerCustomviewBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun bind(answer: String, correctAnswer: String) {
-            with(binding) {
-                answerView.setAnswers(answer)
-                answerView.setDefaultAnswer()
-                binding.root.setOnClickListener {
-                    answerView.checkCorrectAnswer(correctAnswer)
-                }
-            }
-        }
-    }
-}*/
-
 class AnswersAdapter : RecyclerView.Adapter<AnswersAdapter.AnswersViewHolder>() {
     private var correctAnswer: String = ""
     private var clickedPosition: Int? = null
@@ -73,7 +28,10 @@ class AnswersAdapter : RecyclerView.Adapter<AnswersAdapter.AnswersViewHolder>() 
         return AnswersViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: AnswersViewHolder, @SuppressLint("RecyclerView") position: Int) {
+    override fun onBindViewHolder(
+        holder: AnswersViewHolder,
+        @SuppressLint("RecyclerView") position: Int
+    ) {
         val answer = answers[position]
         val isClickable = clickedPosition == null
         holder.bind(answer, correctAnswer, isClickable, clickedPosition)
@@ -82,10 +40,11 @@ class AnswersAdapter : RecyclerView.Adapter<AnswersAdapter.AnswersViewHolder>() 
             if (isClickable) {
                 clickedPosition = position
                 wrongAnswerClicked = answer != correctAnswer
-                notifyItemRangeChanged(0,answer.length)
+                notifyItemRangeChanged(0, answer.length)
             }
         }
     }
+
     override fun getItemCount(): Int = answers.size
 
     class AnswersViewHolder(private val binding: AnswerCustomviewBinding) :
