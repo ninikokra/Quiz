@@ -2,18 +2,18 @@ package com.space.quiz.di
 
 
 import com.space.quiz.domain.usecase.datastore.clear.ClearDatastoreUseCase
-import com.space.quiz.domain.usecase.datastore.read.ReadDatastoreUseCase
-import com.space.quiz.domain.usecase.datastore.save.SaveDatastoreUseCase
+import com.space.quiz.domain.usecase.datastore.get.GetUserDatastoreUseCase
+import com.space.quiz.domain.usecase.datastore.save.SaveUserDatastoreUseCase
 import com.space.quiz.domain.usecase.save_user.SaveUserUseCase
-import com.space.quiz.domain.usecase.subject.GetSubjectUseCaseImpl
+import com.space.quiz.domain.usecase.subject.GetSubjectUseCase
 import org.koin.dsl.module
 
 val useCaseModule = module {
     single { SaveUserUseCase(get()) }
-    single { SaveDatastoreUseCase(get()) }
-    single { ReadDatastoreUseCase(get()) }
+    single { SaveUserDatastoreUseCase(get()) }
+    single { GetUserDatastoreUseCase(get()) }
     single { ClearDatastoreUseCase(get()) }
-    single { GetSubjectUseCaseImpl(get()) }
+    single { GetSubjectUseCase(get()) }
 }
 
 

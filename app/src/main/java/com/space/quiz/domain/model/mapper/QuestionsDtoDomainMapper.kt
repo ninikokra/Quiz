@@ -4,7 +4,7 @@ import com.space.quiz.data.remote.dto.QuestionDto
 import com.space.quiz.domain.model.QuestionsDomainModel
 import com.space.quiz.utils.UIMapper
 
-class QuestionsDtoToDomainMapper: UIMapper<QuestionDto,QuestionsDomainModel>{
+class QuestionsDtoDomainMapper: UIMapper<QuestionDto,QuestionsDomainModel>{
     override fun invoke(model:QuestionDto ): QuestionsDomainModel {
         return QuestionsDomainModel(
             answers = model.answers,
