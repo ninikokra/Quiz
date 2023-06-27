@@ -9,8 +9,6 @@ import com.space.quiz.presentation.base.Inflater
 import com.space.quiz.presentation.ui_home.adapter.HomeAdapter
 import com.space.quiz.presentation.views.dialog.CustomDialogView
 import com.space.quiz.presentation.ui_home.vm.HomeViewModel
-import com.space.quiz.utils.network.ResponseHandler
-import com.space.quiz.utils.isVisible
 import com.space.quiz.utils.lifecycleScope
 import com.space.quiz.utils.observe
 import com.space.quiz.utils.showToast

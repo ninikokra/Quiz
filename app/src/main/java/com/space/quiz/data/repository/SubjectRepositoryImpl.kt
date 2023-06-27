@@ -1,6 +1,5 @@
 package com.space.quiz.data.repository
 
-import android.util.Log
 import com.space.quiz.R
 import com.space.quiz.data.remote.dto.SubjectDto
 import com.space.quiz.data.remote.service.QuizApiService
@@ -9,48 +8,37 @@ import com.space.quiz.domain.model.SubjectDomainModel
 import com.space.quiz.domain.model.mapper.QuestionsDtoToDomainMapper
 import com.space.quiz.domain.model.mapper.SubjectDtoDomainMapper
 import com.space.quiz.domain.repository.SubjectRepository
-import com.space.quiz.utils.network.ResponseHandler
+import com.space.quiz.utils.network.ResponseHelper
+import com.space.quiz.utils.network.retrofit.apiDataFetcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-class SubjectRepositoryImpl
-    (private val quizApiService: QuizApiService,
-     private val subjectDtoToDomain: SubjectDtoDomainMapper,
-     private val questionsDtoToDomainMapper: QuestionsDtoToDomainMapper
-)
-    : SubjectRepository {
+class SubjectRepositoryImpl(
+    private val quizApiService: QuizApiService,
+    private val subjectDtoToDomain: SubjectDtoDomainMapper,
+    private val questionsDtoToDomainMapper: QuestionsDtoToDomainMapper
+) : SubjectRepository {
 
     override val subjectDataList: MutableList<SubjectDto> = mutableListOf()
 
-    override suspend fun getSubject(): Flow<ResponseHandler<List<SubjectDomainModel>>> {
+    override suspend fun getSubject(): Flow<ResponseHelper<List<SubjectDomainModel>>> {
         return flow {
-            emit(ResponseHandler.Loading())
+            emit(ResponseHelper.Loading())
             try {
-                val response = quizApiService.get()
-                if (response.isSuccessful && response.body() != null) {
-                    val subjectItemDto = response.body()!!
-                    subjectDataList.clear()
-                    subjectDataList.addAll(subjectItemDto)
-                    val subjectDomainList = subjectItemDto.map {
-                        subjectDtoToDomain(it)
-                    }
-                    emit(ResponseHandler.Success(subjectDomainList))
-                } else {
-                    emit(ResponseHandler.Error(R.string.service_error_text))
-                }
-            } catch (e: Exception) {
-                emit(ResponseHandler.Error(R.string.service_error_text))
+                val response = apiDataFetcher { quizApiService.get() }
+                subjectDataList.clear()
+                subjectDataList.addAll(response)
+                val subjectDomainList = response.map { subjectDtoToDomain(it) }
+                emit(ResponseHelper.Success(subjectDomainList))
+            } catch (e: Throwable) {
+                emit(ResponseHelper.Error(R.string.service_error_text))
             }
         }
     }
 
     override suspend fun getQuestions(subject: String): List<QuestionsDomainModel> {
-        return subjectDataList.find {
-            it.quizTitle == subject
-        }?.questions?.map {
-            questionsDtoToDomainMapper(it)
-        } ?: emptyList()
-
+        return subjectDataList.find { it.quizTitle == subject }
+            ?.questions?.map { questionsDtoToDomainMapper(it) }
+            ?: emptyList()
     }
 }
-

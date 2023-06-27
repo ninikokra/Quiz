@@ -21,18 +21,19 @@ class QuestionsViewModel(
     private val _questions = MutableStateFlow<QuestionsUIModel?>(null)
     val questions: StateFlow<QuestionsUIModel?> = _questions
 
-
+    private var questionList = listOf<QuestionsDomainModel>()
     private var questionIndex: Int = 0
 
-    private suspend fun fetchQuestions(subject: String): List<QuestionsDomainModel> {
-        return getQuestionsUseCase.invoke(subject)
+     suspend fun fetchQuestions(subject: String) {
+        questionList = getQuestionsUseCase.invoke(subject)
     }
 
     fun getNextQuestion(subject: String) {
         viewModelScope.launch {
-            fetchQuestions(subject)
-            _questions.emit(questionsDomainUIMapper(fetchQuestions(subject)[questionIndex]))
-            questionIndex += 1
+            _questions.emit(questionsDomainUIMapper(questionList[questionIndex]))
+            if (questionIndex < questionList.size -1){
+                questionIndex+=1
+            }
         }
     }
 

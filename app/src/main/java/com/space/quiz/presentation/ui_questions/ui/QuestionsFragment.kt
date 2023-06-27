@@ -33,9 +33,16 @@ class QuestionsFragment : BaseFragment<FragmentQuestionsBinding, QuestionsViewMo
         val subject = args.subject
         showTitleVIew()
         setQuestions()
+        fetchQuestion(subject)
         viewModel.getNextQuestion(subject)
         setNextQuestion(subject)
         initRecycler()
+    }
+
+    private fun fetchQuestion(subject: String){
+        lifecycleScope {
+            viewModel.fetchQuestions(subject)
+        }
     }
 
     private fun setQuestions() {
@@ -44,9 +51,9 @@ class QuestionsFragment : BaseFragment<FragmentQuestionsBinding, QuestionsViewMo
                 it?.let {
                     binding.testsQuestionTextView.text = it.questionTitle
                     answersAdapter.submitList(it.answers)
+                    answersAdapter.submitCorrectAnswer(it.correctAnswer)
                     answersAdapter.notifyItemRangeChanged(0, it.answers.size)
                 }
-
             }
         }
     }
@@ -54,7 +61,6 @@ class QuestionsFragment : BaseFragment<FragmentQuestionsBinding, QuestionsViewMo
     private fun initRecycler() {
         binding.answersRecyclerView.apply {
             adapter = answersAdapter
-            layoutManager = LinearLayoutManager(requireContext())
         }
     }
 
@@ -62,7 +68,6 @@ class QuestionsFragment : BaseFragment<FragmentQuestionsBinding, QuestionsViewMo
         binding.nextQuestionButton.setOnClickListener {
             viewModel.getNextQuestion(subject)
         }
-
     }
 
     private fun showTitleVIew() {
