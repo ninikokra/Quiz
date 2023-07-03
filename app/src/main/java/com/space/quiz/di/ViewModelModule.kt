@@ -18,12 +18,12 @@ val viewModelModule = module {
         )
     }
     viewModel {
-        HomeViewModel(get(),get(),get(), get())
+        HomeViewModel(get(),get(),get(), get(),get())
     }
     viewModel {
-        DetailsViewModel()
+        DetailsViewModel(get(),get(),get(),get())
     }
     viewModel {
-        QuestionsViewModel(get(),get())
+        QuestionsViewModel(get(),get(),get(),get())
     }
 }

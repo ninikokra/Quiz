@@ -9,6 +9,9 @@
     <com.space.quiz.presentation.views.HeaderView
         android:id="@+id/customTitleView"
         android:layout_width="match_parent"
+        app:actions="back"
+        app:textDrawable="@drawable/ic_yellow_star"
+        app:text="@string/earned_points_text"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

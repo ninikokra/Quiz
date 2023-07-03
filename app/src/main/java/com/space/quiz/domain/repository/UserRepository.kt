@@ -9,4 +9,7 @@ interface UserRepository {
     suspend fun save(username: String)
     suspend fun read(): Result<String>
     suspend fun clear()
+
+    suspend fun updateGpa(username: String, gpa: Float)
+
 }

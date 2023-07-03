@@ -8,6 +8,7 @@ class UserUIDomainMapper :UIMapper<UserUIModel,UserDomainModel> {
     override fun invoke(model: UserUIModel): UserDomainModel =
         UserDomainModel(
             id = model.id,
-            userName = model.userName
+            userName = model.userName,
+            gpa = model.gpa
         )
 }

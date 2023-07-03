@@ -5,6 +5,6 @@ data class SubjectDto(
     val questions: List<QuestionDto>,
     val questionsCount: Int,
     val quizDescription: String,
-    val quizIcon: String?,
+    val quizIcon: String,
     val quizTitle: String
 )

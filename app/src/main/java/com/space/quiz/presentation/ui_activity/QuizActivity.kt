@@ -1,7 +1,10 @@
 package com.space.quiz.presentation.ui_activity
 
+import android.app.Activity
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.space.quiz.R

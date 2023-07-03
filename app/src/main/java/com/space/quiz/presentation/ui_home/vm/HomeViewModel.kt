@@ -1,7 +1,9 @@
 package com.space.quiz.presentation.ui_home.vm
 
+import android.util.Log
 import com.space.quiz.domain.usecase.datastore.clear.ClearDatastoreUseCase
 import com.space.quiz.domain.usecase.datastore.read.ReadDatastoreUseCase
+import com.space.quiz.domain.usecase.gpa.GpaUseCase
 import com.space.quiz.domain.usecase.subject.GetSubjectUseCase
 import com.space.quiz.presentation.base.BaseViewModel
 import com.space.quiz.presentation.model.SubjectUIModel
@@ -12,11 +14,13 @@ import com.space.quiz.utils.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.*
+import kotlin.math.log
 
 class HomeViewModel(
     private val readDatastoreUseCase: ReadDatastoreUseCase,
     private val clearDatastoreUseCase: ClearDatastoreUseCase,
     private val getSubjectUseCase: GetSubjectUseCase,
+    private val gpaUseCase: GpaUseCase,
     private val subjectDomainUiMapper: SubjectDomainUiMapper
 ) : BaseViewModel() {
     private val _username = MutableStateFlow<String?>(null)
@@ -30,6 +34,12 @@ class HomeViewModel(
 
     private val _error = MutableStateFlow<String?>(null)
     val error: StateFlow<String?> = _error
+
+    private val _gpa = MutableStateFlow<Float?>(null)
+    val gpa: StateFlow<Float?> = _gpa
+
+    private val _searchQuery = MutableStateFlow<String>("")
+    val searchQuery: StateFlow<String> = _searchQuery
 
 
     fun fetchSubjects() {
@@ -66,8 +76,16 @@ class HomeViewModel(
             if (usernameResult.isSuccess) {
                 val username = usernameResult.getOrNull()
                 _username.value = username
+                username?.let {
+                    _gpa.value = calculateGpa(it)
+
+                }
             }
         }
+    }
+
+    private suspend fun calculateGpa(userName: String):Float {
+        return gpaUseCase.invoke(userName)
     }
 
     fun logout() {
@@ -76,13 +94,18 @@ class HomeViewModel(
             navigateToIntro()
         }
     }
-
-    fun navigateToQuestions(subject: String) {
-        navigate(HomeFragmentDirections.actionHomeFragmentToQuestionsFragment(subject))
+    fun setSearchQuery(query: String) {
+        _searchQuery.value = query
     }
 
+    fun navigateToQuestions(subject: String,item:SubjectUIModel) {
+        navigate(HomeFragmentDirections.actionHomeFragmentToQuestionsFragment(subject,item))
+    }
 
     private fun navigateToIntro() {
         navigate(HomeFragmentDirections.actionHomeFragmentToIntroFragment())
+    }
+     fun navigateToDetails() {
+        navigate(HomeFragmentDirections.actionHomeFragmentToDetailsFragment())
     }
 }
