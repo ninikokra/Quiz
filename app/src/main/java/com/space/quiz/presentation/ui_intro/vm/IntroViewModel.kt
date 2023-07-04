@@ -1,7 +1,7 @@
 package com.space.quiz.presentation.ui_intro.vm
 
-import com.space.quiz.domain.usecase.datastore.read.ReadDatastoreUseCase
-import com.space.quiz.domain.usecase.datastore.save.SaveDatastoreUseCase
+import com.space.quiz.domain.usecase.datastore.get.GetUserDatastoreUseCase
+import com.space.quiz.domain.usecase.datastore.save.SaveUserDatastoreUseCase
 import com.space.quiz.domain.usecase.save_user.SaveUserUseCase
 import com.space.quiz.presentation.base.BaseViewModel
 import com.space.quiz.presentation.model.UserUIModel
@@ -14,8 +14,8 @@ import kotlinx.coroutines.flow.StateFlow
 
 class IntroViewModel(
     private val saveUserUseCase: SaveUserUseCase,
-    private val readDataStoreUseCase: ReadDatastoreUseCase,
-    private val saveDataStoreUseCase: SaveDatastoreUseCase,
+    private val readDataStoreUseCase: GetUserDatastoreUseCase,
+    private val saveDataStoreUseCase: SaveUserDatastoreUseCase,
     private val userUIToDomainMapper: UserUIDomainMapper
 ) : BaseViewModel() {
     private val _errorFlow = MutableStateFlow<Int?>(null)

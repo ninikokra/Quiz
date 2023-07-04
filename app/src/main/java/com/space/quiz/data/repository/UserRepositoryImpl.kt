@@ -22,14 +22,14 @@ class UserRepositoryImpl(
         return userDao.getUserName(userName)?.let { entityToDomain(it) }
     }
 
-    override suspend fun save(username: String) {
+    override suspend fun saveUserName(username: String) {
         Result.runCatching {
             userDataStore.save("", username)
         }
     }
 
 
-    override suspend fun read(): Result<String> {
+    override suspend fun getUser(): Result<String> {
         return Result.runCatching {
             val flow = userDataStore.read("")
             flow.firstOrNull() ?: ""

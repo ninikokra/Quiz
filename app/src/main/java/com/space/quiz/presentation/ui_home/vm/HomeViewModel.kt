@@ -1,7 +1,8 @@
 package com.space.quiz.presentation.ui_home.vm
 
+import com.space.quiz.domain.model.SubjectDomainModel
 import com.space.quiz.domain.usecase.datastore.clear.ClearDatastoreUseCase
-import com.space.quiz.domain.usecase.datastore.read.ReadDatastoreUseCase
+import com.space.quiz.domain.usecase.datastore.get.GetUserDatastoreUseCase
 import com.space.quiz.domain.usecase.subject.GetSubjectUseCase
 import com.space.quiz.presentation.base.BaseViewModel
 import com.space.quiz.presentation.model.SubjectUIModel
@@ -14,7 +15,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.*
 
 class HomeViewModel(
-    private val readDatastoreUseCase: ReadDatastoreUseCase,
+    private val readDatastoreUseCase: GetUserDatastoreUseCase,
     private val clearDatastoreUseCase: ClearDatastoreUseCase,
     private val getSubjectUseCase: GetSubjectUseCase,
     private val subjectDomainUiMapper: SubjectDomainUiMapper
@@ -25,12 +26,11 @@ class HomeViewModel(
     private val _subjects = MutableStateFlow<List<SubjectUIModel>>(emptyList())
     val subjects: StateFlow<List<SubjectUIModel>> = _subjects
 
-    private val _isLoading = MutableStateFlow<Boolean>(false)
+    private val _isLoading = MutableStateFlow(false)
     val isLoading: StateFlow<Boolean> = _isLoading
 
     private val _error = MutableStateFlow<String?>(null)
     val error: StateFlow<String?> = _error
-
 
     fun fetchSubjects() {
         viewModelScope {

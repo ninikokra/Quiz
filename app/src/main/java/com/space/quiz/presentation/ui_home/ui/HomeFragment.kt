@@ -45,7 +45,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     private fun initRecycler() {
         binding.subjectsRecyclerView.apply {
             adapter = homeAdapter
-            layoutManager = LinearLayoutManager(requireContext())
         }
         lifecycleScope {
             viewModel.fetchSubjects()
@@ -60,15 +59,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         }
         lifecycleScope {
             viewModel.isLoading.collect { isLoading ->
-                binding.homeProgressBar.visibility = if (isLoading) {
-                    View.VISIBLE
-                } else {
-                    View.GONE
-                }
+                binding.homeProgressBar.isVisible(isLoading)
             }
         }
         lifecycleScope {
-            viewModel.error.collect{ error->
+            viewModel.error.collect { error ->
                 error?.let {
                     requireContext().showToast(getString(R.string.service_error_text))
                 }
@@ -76,6 +71,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             }
         }
     }
+
     private fun observeUsername() {
         viewModel.username.observe(viewLifecycleOwner) { username ->
             binding.helloUserTextView.text = getString(R.string.hello_user_text, username)
