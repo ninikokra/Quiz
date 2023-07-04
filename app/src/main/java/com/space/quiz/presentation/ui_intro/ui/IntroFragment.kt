@@ -19,16 +19,17 @@ class IntroFragment : BaseFragment<FragmentIntroBinding, IntroViewModel>() {
         return FragmentIntroBinding::inflate
     }
 
-    override fun onBind(viewModel: IntroViewModel) {
-        authenticateUser(viewModel)
-        observeSessionAndNavigate(viewModel)
+    override fun onBind() {
+        authenticateUser()
+        observeSessionAndNavigate()
     }
 
-    private fun observeSessionAndNavigate(viewModel: IntroViewModel) {
+    private fun observeSessionAndNavigate() {
         viewModel.getCurrentUserSession()
     }
 
-    private fun authenticateUser(viewModel: IntroViewModel) {
+    private fun authenticateUser() {
+        collectStatus()
         with(binding) {
             introStartQuizButton.setOnClickListener {
                 val currentUser = inputNameEditText.text.toString()
@@ -37,14 +38,15 @@ class IntroFragment : BaseFragment<FragmentIntroBinding, IntroViewModel>() {
                 } else {
                     requireContext().showToast(getString(R.string.insert_username_text))
                 }
-                collectStatus(viewModel)
             }
         }
     }
 
-    private fun collectStatus(viewModel: IntroViewModel) {
+    private fun collectStatus() {
         collectInLifecycleScope(viewModel.errorFlow) {
-            binding.inputNameEditText.error = getString(R.string.invalid_username_text)
+            it?.let {
+                binding.inputNameEditText.error = getString(R.string.invalid_username_text)
+            }
         }
     }
 }

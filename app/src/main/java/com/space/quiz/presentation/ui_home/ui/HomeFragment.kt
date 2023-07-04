@@ -1,5 +1,6 @@
 package com.space.quiz.presentation.ui_home.ui
 
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.space.quiz.R
 import com.space.quiz.databinding.FragmentHomeBinding
@@ -27,59 +28,60 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         HomeAdapter()
     }
 
-    override fun onBind(viewModel: HomeViewModel) {
+    override fun onBind() {
         binding.logOutButton.setOnClickListener {
-            showDialog(viewModel)
+            showDialog()
         }
-        observeUsername(viewModel)
-        initRecycler(viewModel)
-        setSubjectItemClickListener(viewModel)
-        fetchSubjects(viewModel)
+        observeUsername()
+        initRecycler()
+        setSubjectItemClickListener()
+        fetchSubjects()
     }
 
-    private fun setSubjectItemClickListener(viewModel: HomeViewModel) {
+    private fun setSubjectItemClickListener() {
         homeAdapter.setOnItemClickListener {
-            viewModel.navigateToTests()
+            viewModel.navigateToQuestions(it.quizTitle.toString())
         }
     }
 
-    private fun initRecycler(viewModel: HomeViewModel) {
+    private fun initRecycler() {
         binding.subjectsRecyclerView.apply {
             adapter = homeAdapter
-            layoutManager = LinearLayoutManager(requireContext())
         }
         lifecycleScope {
-            viewModel.fetchSubjectList()
+            viewModel.fetchSubjects()
         }
     }
 
-    private fun fetchSubjects(viewModel: HomeViewModel) {
-        viewModel.subjectList.observe(viewLifecycleOwner) { response ->
-            when (response) {
-                is ResponseHandler.Success -> {
-                    val subjectList = response.response
-                    homeAdapter.submitList(subjectList)
-                    binding.homeProgressBar.isVisible(false)
-                }
-                is ResponseHandler.Error -> {
+    private fun fetchSubjects() {
+        lifecycleScope {
+            viewModel.subjects.collect {
+                homeAdapter.submitList(it)
+            }
+        }
+        lifecycleScope {
+            viewModel.isLoading.collect { isLoading ->
+                binding.homeProgressBar.isVisible(isLoading)
+            }
+        }
+        lifecycleScope {
+            viewModel.error.collect { error ->
+                error?.let {
                     requireContext().showToast(getString(R.string.service_error_text))
                 }
-                is ResponseHandler.Loading -> {
-                    binding.homeProgressBar.isVisible(true)
-                }
+
             }
         }
     }
 
-
-    private fun observeUsername(viewModel: HomeViewModel) {
+    private fun observeUsername() {
         viewModel.username.observe(viewLifecycleOwner) { username ->
             binding.helloUserTextView.text = getString(R.string.hello_user_text, username)
         }
         viewModel.fetchUsername()
     }
 
-   private fun showDialog(viewModel: HomeViewModel) {
+    private fun showDialog() {
         CustomDialogView(requireContext()).apply {
             showExitState()
             setPositiveButtonClickListener {

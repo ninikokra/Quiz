@@ -7,7 +7,7 @@ import com.space.quiz.domain.usecase.base.BaseUseCase
 import com.space.quiz.utils.Resource
 import com.space.quiz.utils.UserValidationRegex.isValidUsername
 
-class SaveUserUseCaseImpl(private val userRepository: UserRepository) :
+class SaveUserUseCase(private val userRepository: UserRepository) :
     BaseUseCase<UserDomainModel, Resource>() {
     override suspend fun invoke(params: UserDomainModel?): Resource {
         if (!isValidUsername(params!!.userName)) {
