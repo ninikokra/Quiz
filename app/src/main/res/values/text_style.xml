@@ -96,6 +96,11 @@
         <item name="font">@font/myriad_geo</item>
         <item name="android:textColor">@color/yellow_primary</item>
     </style>
+    <style name="mediumMyriadGeo_yellow_normal">
+        <item name="android:textSize">@dimen/dimen_14sp</item>
+        <item name="font">@font/myriad_geo</item>
+        <item name="android:textColor">@color/yellow_primary</item>
+    </style>
     <style name="mediumMyriadGeo_lBlue_bold">
         <item name="android:font">@font/myriad_geo</item>
         <item name="android:textSize">@dimen/dimen_14sp</item>

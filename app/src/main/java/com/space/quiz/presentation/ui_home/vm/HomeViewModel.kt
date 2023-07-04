@@ -8,7 +8,7 @@ import com.space.quiz.presentation.base.BaseViewModel
 import com.space.quiz.presentation.model.SubjectUIModel
 import com.space.quiz.presentation.model.mapper.subject.SubjectDomainUiMapper
 import com.space.quiz.presentation.ui_home.ui.HomeFragmentDirections
-import com.space.quiz.utils.network.ResponseHandler
+import com.space.quiz.utils.network.ResponseHelper
 import com.space.quiz.utils.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -44,15 +44,15 @@ class HomeViewModel(
                 }
                 .collect { responseHandler ->
                     when (responseHandler) {
-                        is ResponseHandler.Success -> {
+                        is ResponseHelper.Success -> {
                             val quizItems =
                                 responseHandler.response.map { subjectDomainUiMapper(it) }
                             _subjects.value = quizItems
                         }
-                        is ResponseHandler.Error -> {
+                        is ResponseHelper.Error -> {
                             _error.value = responseHandler.errorResponseString
                         }
-                        is ResponseHandler.Loading -> {
+                        is ResponseHelper.Loading -> {
                             _isLoading.value = responseHandler.isLoading
                         }
                     }

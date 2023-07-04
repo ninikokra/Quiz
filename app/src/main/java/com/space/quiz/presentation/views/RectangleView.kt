@@ -24,6 +24,12 @@ class RectangleView @JvmOverloads constructor(
         paint.style = Paint.Style.FILL
     }
 
+    fun setRectangleBackgroundColor(color: Int) {
+        rectangleBackgroundColor = color
+        paint.color = rectangleBackgroundColor
+        invalidate()
+    }
+
     override fun drawCustomView(canvas: Canvas) {
         val width = width
         val height = height

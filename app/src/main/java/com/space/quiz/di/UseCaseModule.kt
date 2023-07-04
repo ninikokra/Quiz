@@ -14,6 +14,7 @@ val useCaseModule = module {
     single { GetUserDatastoreUseCase(get()) }
     single { ClearDatastoreUseCase(get()) }
     single { GetSubjectUseCase(get()) }
+    single { GetQuestionsUseCase(get()) }
 }
 
 

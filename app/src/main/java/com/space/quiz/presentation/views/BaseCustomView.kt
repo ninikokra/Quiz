@@ -23,6 +23,7 @@ abstract class BaseCustomView(
         drawCustomView(canvas)
     }
 
+
     protected val width get() = getWidth().toFloat()
     protected val height get() = getHeight().toFloat()
 
