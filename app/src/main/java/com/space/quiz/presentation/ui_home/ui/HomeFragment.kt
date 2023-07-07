@@ -47,7 +47,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     private fun initRecycler() {
         binding.subjectsRecyclerView.apply {
             adapter = homeAdapter
-            layoutManager = LinearLayoutManager(requireContext())
         }
         lifecycleScope {
             viewModel.fetchSubjects()
@@ -75,11 +74,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                 }
             }
             viewModel.isLoading.collect { isLoading ->
-                binding.homeProgressBar.visibility = if (isLoading) {
-                    View.VISIBLE
-                } else {
-                    View.GONE
-                }
+                binding.homeProgressBar.isVisible(isLoading)
             }
         }
         lifecycleScope {

@@ -5,7 +5,7 @@ import com.space.quiz.data.remote.dto.SubjectDto
 import com.space.quiz.data.remote.service.QuizApiService
 import com.space.quiz.domain.model.QuestionsDomainModel
 import com.space.quiz.domain.model.SubjectDomainModel
-import com.space.quiz.domain.model.mapper.QuestionsDtoToDomainMapper
+import com.space.quiz.domain.model.mapper.QuestionsDtoDomainMapper
 import com.space.quiz.domain.model.mapper.SubjectDtoDomainMapper
 import com.space.quiz.domain.repository.SubjectRepository
 import com.space.quiz.utils.network.ResponseHelper
@@ -17,6 +17,7 @@ class SubjectRepositoryImpl(
     private val quizApiService: QuizApiService,
     private val subjectDtoToDomain: SubjectDtoDomainMapper,
     private val questionsDtoToDomainMapper: QuestionsDtoToDomainMapper
+
 ) : SubjectRepository {
 
     override val subjectDataList: MutableList<SubjectDto> = mutableListOf()

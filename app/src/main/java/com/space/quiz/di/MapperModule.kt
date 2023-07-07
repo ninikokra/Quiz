@@ -3,7 +3,7 @@ package com.space.quiz.di
 import com.space.quiz.data.local.mapper.quiz_detail.UserDetailsDomainEntityMapper
 import com.space.quiz.data.local.mapper.user.UserDomainToEntityMapper
 import com.space.quiz.data.local.mapper.user.UserEntityToDomainMapper
-import com.space.quiz.domain.model.mapper.QuestionsDtoToDomainMapper
+import com.space.quiz.domain.model.mapper.QuestionsDtoDomainMapper
 import com.space.quiz.domain.model.mapper.SubjectDtoDomainMapper
 import com.space.quiz.domain.model.mapper.UserDetailsEntityDomainMapper
 import com.space.quiz.presentation.model.mapper.details.UserDetailsDomainUIMapper
