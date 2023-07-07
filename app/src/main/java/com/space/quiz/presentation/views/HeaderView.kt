@@ -1,10 +1,13 @@
 package com.space.quiz.presentation.views
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
+import androidx.navigation.findNavController
 import com.space.quiz.R
 import com.space.quiz.databinding.CustomTitleViewBinding
 
@@ -13,26 +16,49 @@ class HeaderView @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
+
     private val binding: CustomTitleViewBinding =
         CustomTitleViewBinding.inflate(LayoutInflater.from(context), this, true)
 
-    fun collectedPointsToolBar() {
-        with(binding) {
-            val drawableIcon = ContextCompat.getDrawable(context, R.drawable.ic_yellow_star)
-            drawableIcon?.setBounds(0, 0, drawableIcon.intrinsicWidth, drawableIcon.intrinsicHeight)
-            titleTextView.setCompoundDrawables(null, null, drawableIcon, null)
-            titleTextView.text = context.getString(R.string.earned_points_text)
-            val backDrawable = ContextCompat.getDrawable(context, R.drawable.ic_arrow_left)
-            backButtonImageView.setImageDrawable(backDrawable)
+    private var actionType: Actions? = null
+        set(value) {
+            value?.let {
+                determineActionsType(value)
+            }
+            field = value
         }
-    }
 
-    fun subjectTitleToolBar() {
-        with(binding) {
-            val cancelDrawable = ContextCompat.getDrawable(context, R.drawable.ic_cancel)
-            cancelButtonImageView.setImageDrawable(cancelDrawable)
-            titleTextView.text = context.getString(R.string.subject_text)
+    var customText: String? = null
+        set(value) {
+            binding.titleTextView.text = value
+            field = value
         }
+
+    private var textDrawable: Drawable? = null
+        set(value) {
+            field = value
+            value?.let {
+                collectedPointsToolBar()
+            }
+        }
+
+    init {
+        val typeArray = context.theme.obtainStyledAttributes(
+            attrs,
+            R.styleable.HeaderView,
+            defStyleAttr,
+            0
+        )
+
+        actionType = Actions.values()[typeArray.getInt(R.styleable.HeaderView_actions, 0)]
+        customText = typeArray.getString(R.styleable.HeaderView_text)
+        textDrawable = typeArray.getDrawable(R.styleable.HeaderView_textDrawable)
+
+
+        binding.backButtonImageView.setOnClickListener {
+            findNavController().navigateUp()
+        }
+        typeArray.recycle()
     }
 
     fun setCancelButton(onClickListener: () -> Unit) {
@@ -41,9 +67,33 @@ class HeaderView @JvmOverloads constructor(
         }
     }
 
-    fun setBackButton(onClickListener: () -> Unit) {
-        binding.backButtonImageView.setOnClickListener {
-            onClickListener.invoke()
+    private fun collectedPointsToolBar() {
+        with(binding) {
+            val drawableIcon = ContextCompat.getDrawable(context, R.drawable.ic_yellow_star)
+            drawableIcon?.setBounds(0, 0, drawableIcon.intrinsicWidth, drawableIcon.intrinsicHeight)
+            titleTextView.setCompoundDrawables(null, null, drawableIcon, null)
         }
+    }
+
+    private fun determineActionsType(actions: Actions) {
+        when (actions) {
+            Actions.BACK -> {
+                val backDrawable = ContextCompat.getDrawable(context, R.drawable.ic_arrow_left)
+                binding.backButtonImageView.setImageDrawable(backDrawable)
+            }
+            Actions.CANCEL -> {
+                val cancelDrawable = ContextCompat.getDrawable(context, R.drawable.ic_cancel)
+                binding.cancelButtonImageView.setImageDrawable(cancelDrawable)
+            }
+            else -> {}
+
+        }
+    }
+
+    enum class Actions {
+        NOTHING,
+        BACK,
+        CANCEL,
+        BOTH
     }
 }

@@ -9,7 +9,8 @@ class UserDomainToEntityMapper : UIMapper<UserDomainModel, UserEntity> {
         with(model) {
             UserEntity(
                 id = id,
-                userName = userName
+                userName = userName,
+                gpa = gpa
             )
         }
 }

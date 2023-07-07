@@ -45,6 +45,8 @@ class AnswersView @JvmOverloads constructor(
                     R.color.neutral_01_dark_grey
                 )
             )
+            pointTokenTextview.isVisible(false)
+
         }
     }
 

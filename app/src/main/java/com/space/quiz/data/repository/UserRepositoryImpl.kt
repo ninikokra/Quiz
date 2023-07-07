@@ -42,5 +42,7 @@ class UserRepositoryImpl(
         }
     }
 
-
+    override suspend fun updateGpa(username: String, gpa: Float) {
+        userDao.updateGPA(username,gpa)
+    }
 }

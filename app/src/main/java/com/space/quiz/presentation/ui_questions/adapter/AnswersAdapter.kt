@@ -11,9 +11,19 @@ class AnswersAdapter : RecyclerView.Adapter<AnswersAdapter.AnswersViewHolder>() 
     private var clickedPosition: Int? = null
     private var wrongAnswerClicked: Boolean = false
     private var answers: List<String> = emptyList()
+    private var selectedAnswer: String? = null
 
     fun submitCorrectAnswer(correctAnswer: String) {
         this.correctAnswer = correctAnswer
+    }
+    fun getSelectedAnswer(): String? {
+        return selectedAnswer
+    }
+    fun getCorrectAnswer(): String {
+        return correctAnswer
+    }
+    fun isAnswered(): Boolean{
+        return clickedPosition != null
     }
 
     fun submitList(answersList: List<String>) {
@@ -22,12 +32,14 @@ class AnswersAdapter : RecyclerView.Adapter<AnswersAdapter.AnswersViewHolder>() 
         wrongAnswerClicked = false
     }
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnswersViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = AnswerCustomviewBinding.inflate(inflater, parent, false)
         return AnswersViewHolder(binding)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(
         holder: AnswersViewHolder,
         @SuppressLint("RecyclerView") position: Int
@@ -40,7 +52,9 @@ class AnswersAdapter : RecyclerView.Adapter<AnswersAdapter.AnswersViewHolder>() 
             if (isClickable) {
                 clickedPosition = position
                 wrongAnswerClicked = answer != correctAnswer
-                notifyItemRangeChanged(0, answer.length)
+                selectedAnswer = answer
+                //notifyItemRangeChanged(0, answer.length)
+                notifyDataSetChanged()
             }
         }
     }

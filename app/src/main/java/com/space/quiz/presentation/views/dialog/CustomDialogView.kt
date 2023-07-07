@@ -6,7 +6,9 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.FrameLayout
+import androidx.core.view.isVisible
 import com.space.quiz.R
 import com.space.quiz.databinding.CustomDialogBinding
 import com.space.quiz.utils.isVisible
@@ -32,17 +34,22 @@ class CustomDialogView @JvmOverloads constructor(
 
         alertDialog = alertDialogBuilder.create()
         alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        alertDialog.setCancelable(false)
     }
 
     fun showDialog() {
         alertDialog.show()
     }
 
+
     fun showCloseState() {
         with(binding) {
-            congratsGroup.isVisible(true)
+            exitCloseGroup.isVisible(true)
             exitQuestionTextVIew.text = context.getString(R.string.dialog_quiz_quit_text)
         }
+    }
+    fun setText(pointText: String){
+        binding.earnedPointsTextView.text = pointText
     }
 
     fun showExitState() {
@@ -56,15 +63,23 @@ class CustomDialogView @JvmOverloads constructor(
         binding.congratsGroup.isVisible(true)
     }
 
+    fun showFailedState(){
+        with(binding){
+            congratsGroup.isVisible(true)
+            congratsIcon.text = context.getString(R.string.failed_icon_text)
+            congratsTextView.text = ""
+        }
+    }
+
     fun setPositiveButtonClickListener(onClickListener: () -> Unit) {
-        binding.yesTextView.setOnClickListener {
+        binding.yesButton.setOnClickListener {
             onClickListener.invoke()
             alertDialog.dismiss()
         }
     }
 
     fun setNegativeButtonClickListener(onClickListener: () -> Unit) {
-        binding.noTextView.setOnClickListener {
+        binding.noButton.setOnClickListener {
             onClickListener.invoke()
             alertDialog.dismiss()
         }

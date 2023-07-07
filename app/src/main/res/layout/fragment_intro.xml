@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.5"
+        app:layout_constraintHeight_percent="0.55"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -20,6 +20,7 @@
         style="@style/xxlMyriadGeo_white_bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_10dp"
         android:text="@string/my_first_quiz"
         app:layout_constraintBottom_toTopOf="@+id/introLogoImageView"
         app:layout_constraintEnd_toEndOf="@+id/RectCustomView"
@@ -44,6 +45,7 @@
         android:layout_marginTop="@dimen/dimen_40dp"
         android:background="@drawable/input_edittext_shape"
         android:hint="@string/enter_name_text"
+        android:maxLines="1"
         android:minHeight="@dimen/dimen_48dp"
         android:paddingHorizontal="@dimen/dimen_8dp"
         android:textAlignment="center"

@@ -11,8 +11,10 @@ private  fun provideUserDatabase(context: Context): UserDatabase {
 
 }
 private fun provideDao(db: UserDatabase) = db.userDao()
+private fun provideUserDetailsDao(db: UserDatabase) = db.userDetailsDao()
 
 val dbModule = module {
     single { provideUserDatabase(get()) }
     single { provideDao(get()) }
+    single { provideUserDetailsDao(get()) }
 }

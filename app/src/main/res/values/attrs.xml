@@ -1,5 +1,17 @@
 <resources>
     <declare-styleable name="RectangleView">
         <attr name="rectangleBackgroundColor" format="color" />
-</declare-styleable>
+    </declare-styleable>
+
+    <declare-styleable name="HeaderView">
+        <attr name="actions">
+            <enum name="nothing" value="0"/>
+            <enum name="back" value="1"/>
+            <enum name="cancel" value="2"/>
+            <enum name="both" value="3"/>
+        </attr>
+        <attr name="text" format="string"/>
+        <attr name="textDrawable" format="reference"/>
+
+    </declare-styleable>
 </resources>
